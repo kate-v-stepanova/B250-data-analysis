@@ -39,7 +39,7 @@ So, let's create symlinks.
 
 3. Symlink for the subset 26: `ln -s /icgc/dkfzlsdf/analysis/OE0532/20910/210212_VH00211_26_AAAHM3LM5/AS-580540-LR-55520/fastq/AS-580540-LR-55520_R1.fastq.gz /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/input/merged/26.fastq.gz` 
 
-## Create annotation files
+## Create annotation files (bc_files)
 To demultiplex the data, we need to create annotation files (bc_files). These files contain information about sample name and the barcode (tab separated). This info should be received from the person, who prepared the library for sequencing. 
 
 > **_NOTE:_** The name of the `bc_file` should end with the name of the `.fastq` file, so that the script knows which bc file is for which fastq file. E.g. for the subset 24 the fastq file is named `24.fastq.gz` and bc file is named `bc_file_24.txt`
@@ -84,3 +84,7 @@ This will allow to process all 3 subsets in parallel -> will save the time.
 > *_NOTE:_* However, it is also possible just to submit one job for the whole dataset: `bsub -q long -R "rusage[mem=35G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore/trim_adapter_and_demultiplex.sh 20910`. 
 
 In this case all subsets will be processed one by one, which increased the processing time. 
+
+> *_NOTE:_* The command `bsub` submits the job to the cluster. The job will be running for a few hours. Once it's done (or failed), the notification will be sent by email. 
+
+If the job has failed, the output will be included in the email. Then you need to read it. This might help to figure out what exactly went wrong.
