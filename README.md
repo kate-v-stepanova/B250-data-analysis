@@ -2,9 +2,9 @@
 
 [Demultiplexing](docs/1_demultiplex.md)
 
-[rRNA clean-up](docs/2_rRNA.md)
+TODO: [rRNA clean-up](docs/2_rRNA.md)
 
-[Alignment](docs/3_align.md)
+TODO: [Alignment](docs/3_align.md)
 
 ...
 
