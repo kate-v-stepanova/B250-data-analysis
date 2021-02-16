@@ -5,7 +5,9 @@ This is a step-by-step tutorial for analysing the Ribosome-Profiling data.
 
 [rRNA clean-up](docs/2_rRNA_cleanup.md)
 
-TODO: [Alignment](docs/3_align.md)
+[Alignment](docs/3_align.md)
+
+[UCSC link](docs/4_ucsc_link.md)
 
 ...
 
