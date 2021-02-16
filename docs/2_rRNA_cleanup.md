@@ -97,9 +97,9 @@ This script extract the information about the alignment from the `.psl` files (o
 
 Output dir 1: `/icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/rrna/reads_per_position`
 Output dir 2: `/icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/rrna/reads_per_gene`
-Output file: `less /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/rrna_stats.txt`
+Output file: `less /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/alignment_stats/rrna_stats.txt`
 
-The stat file `less /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/rrna_stats.txt` contains the following information:
+The stat file `less /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/alignment_stats/rrna_stats.txt` contains the following information:
 ```
 sample  rrna_reads
 S1_T2_late	64126497
