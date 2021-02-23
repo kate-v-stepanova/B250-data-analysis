@@ -92,9 +92,11 @@ S14_Lung8    GCATA
 ```
 
 ## Trim adapter and demultiplex
-1. Trim and demultiplex the subset 24: `bsub -q long -R "rusage[mem=35G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore/trim_adapter_and_demultiplex.sh 20910 24`
-2. Trim and demultiplex the subset 25: `bsub -q long -R "rusage[mem=35G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore/trim_adapter_and_demultiplex.sh 20910 25`
-3. Trim and demultiplex the subset 26: `bsub -q long -R "rusage[mem=35G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore/trim_adapter_and_demultiplex.sh 20910 26`
+1. Trim and demultiplex the subset 24: `bsub -q long -R "rusage[mem=35G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore/trim_adapter_and_demultiplex.sh 20910 30 24`
+2. Trim and demultiplex the subset 25: `bsub -q long -R "rusage[mem=35G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore/trim_adapter_and_demultiplex.sh 20910 30 25`
+3. Trim and demultiplex the subset 26: `bsub -q long -R "rusage[mem=35G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore/trim_adapter_and_demultiplex.sh 20910 30 26`
+
+where `30` is min read length, `24`, `25` and `26` are the subsets.
 
 This will allow to process all 3 subsets in parallel -> will save the time. 
 
