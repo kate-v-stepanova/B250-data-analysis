@@ -128,3 +128,28 @@ In each directory `toGenome` and `toTranscriptome` we can see the following file
 `*_toTranscriptome_dedup.bam` files contain only unique reads (without duplicates)
 
 `*_toTranscriptome.bam.bai` files are the index files which are required for deduplicating step and created automatically by the script. 
+
+
+### Alignment stats
+
+1. Get alignment stats 
+
+```
+bsub -q medium -R "rusage[mem=30G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore/get_alignment_stats.sh 20910
+```
+
+2. Aggregate stats into 1 file 
+
+```
+python /icgc/dkfzlsdf/analysis/OE0532/software/diricore/get_alignment_stats_2.py 20910
+```
+
+3. Plot alignment stats
+
+```
+module load gcc/7.2.0 && module load R/3.5.1 && Rscript /icgc/dkfzlsdf/analysis/OE0532/software/diricore/plot_star_alignment_stats2.r 20910
+```
+
+The alignments plot looks like that: 
+
+![table](/pics/alignment_stats.png)
