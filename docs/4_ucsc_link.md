@@ -101,7 +101,7 @@ Make sure that the correct genome version is selected.
 
 ### 4.6. Save session
 
-Open the UCSC sessions: `http://genome.ucsc.edu/cgi-bin/hgSession`
+Open the UCSC sessions: http://genome.ucsc.edu/cgi-bin/hgSession
 
 > **_NOTE_** You need to be registered, to be able to save sessions
 
@@ -113,7 +113,7 @@ Save the UCSC link:
 
 Now the ucsc link can be shared: http://genome.ucsc.edu/s/stephz/21012_all_unique
 
-## IMPORTANT - keep cronjob running
+## 5. IMPORTANT - keep cronjob running
 
 > **_NOTE:_** DKFZ FTP-server stores files for a certain period of time, and then deletes them. 
 
