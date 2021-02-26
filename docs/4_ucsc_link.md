@@ -73,50 +73,33 @@ Uploading /icgc/dkfzlsdf/analysis/OE0532/21012/analysis/output/gen_tracks/all_un
 
 This has to be done manually via UCSC web-site. 
 
-1. Open the link: http://genome.ucsc.edu/cgi-bin/hgCustom
-2. Delete existing tracks if there are any
+Open the link: http://genome.ucsc.edu/cgi-bin/hgCustom
 
-[](/pics/ucsc_1.png)
+### 4.1. Delete existing tracks if there are any
 
-3. Add custom tracks
+![](/pics/ucsc_1.png)
 
-[](/pics/ucsc_2.png)
+### 4.2. Add custom tracks
 
-4. Add tracks & select the genome version
+![](/pics/ucsc_2.png)
 
-Copy & paste the annotation file: `less /icgc/dkfzlsdf/analysis/OE0532/21012/analysis/output/gen_tracks/all_unique/ucsc_track_annotation.txt
+### 4.3 Add tracks & select the genome version
 
-```
-browser
-track name=S10_CoC_NG_LG_minus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S10_CoC_NG_LG_minus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S10_CoC_NG_LG_plus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S10_CoC_NG_LG_plus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S1_E0771_HG_minus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S1_E0771_HG_minus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S1_E0771_HG_plus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S1_E0771_HG_plus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S2_E0771_LG_minus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S2_E0771_LG_minus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S2_E0771_LG_plus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S2_E0771_LG_plus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S3_E0771_LC_minus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S3_E0771_LC_minus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S3_E0771_LC_plus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S3_E0771_LC_plus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S4_CoC_GFP_HG_minus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S4_CoC_GFP_HG_minus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S4_CoC_GFP_HG_plus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S4_CoC_GFP_HG_plus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S5_CoC_GFP_LG_minus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S5_CoC_GFP_LG_minus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S5_CoC_GFP_LG_plus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S5_CoC_GFP_LG_plus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S6_MEF_HG_minus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S6_MEF_HG_minus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S6_MEF_HG_plus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S6_MEF_HG_plus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S7_MEF_LG_minus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S7_MEF_LG_minus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S7_MEF_LG_plus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S7_MEF_LG_plus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S8_MEF_LC_minus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S8_MEF_LC_minus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S8_MEF_LC_plus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S8_MEF_LC_plus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S9_CoC_NG_HG_minus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S9_CoC_NG_HG_minus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-track name=S9_CoC_NG_HG_plus db=mm10 type=bigWig bigDataUrl=ftp://ftp.dkfz-heidelberg.de/outgoing/B250/ucsc/21012/all_unique/S9_CoC_NG_HG_plus.bw visibility=full alwaysZero=on yLineOnOff=on yLineMark=0 maxHeightPixels=40
-```
+Copy & paste the annotation file: `less /icgc/dkfzlsdf/analysis/OE0532/21012/analysis/output/gen_tracks/all_unique/ucsc_track_annotation.txt`
 
-5. Open tracks in the UCSC browser
-[](/pics/ucsc_4.png)
+Make sure that the correct genome version is selected.
 
-And view the results
-[](/pics/ucsc_5.png)
+![](/pics/ucsc_3.png)
 
-6. Save session
+### 4.4. Open tracks in the UCSC browser
+
+![](/pics/ucsc_4.png)
+
+### 4.5 View the results
+
+![](/pics/ucsc_5.png)
+
+### 4.6. Save session
 
 Open the UCSC sessions: `http://genome.ucsc.edu/cgi-bin/hgSession`
 
@@ -124,8 +107,26 @@ Open the UCSC sessions: `http://genome.ucsc.edu/cgi-bin/hgSession`
 
 Save the UCSC link: 
 
-[](/pics/ucsc_6.png)
+![](/pics/ucsc_6.png)
 
-Now the ucsc link can be shared: `http://genome.ucsc.edu/s/stephz/21012_all_unique`
+### 4.7 Share the UCSC link
+
+Now the ucsc link can be shared: http://genome.ucsc.edu/s/stephz/21012_all_unique
+
+## IMPORTANT - keep cronjob running
 
 > **_NOTE:_** DKFZ FTP-server stores files for a certain period of time, and then deletes them. 
+
+It is important to regularly check that the files have not been removed. And if so, to upload them again.
+
+This is done with the script: `python /icgc/dkfzlsdf/analysis/OE0532/software/scripts/ucsc_tracks_to_ftp.py`
+
+To let the script run automatically, set up a [crontab](https://crontab.guru/) with the command `crontab -e`
+
+Add the following line (tab-separated):
+
+```
+27	6	*	*	*	python /icgc/dkfzlsdf/analysis/OE0532/software/scripts/ucsc_tracks_to_ftp.py
+```
+
+This means, every day at 6:27 am the script will check whether all UCSC tracks which are available on the cluster exist on FTP. If not, will upload them automatically. The user will be notified by email. 
