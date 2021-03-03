@@ -15,6 +15,8 @@ This is a step-by-step tutorial for analysing the Ribosome-Profiling data.
 
 [ClusterProfiler analysis (GO term)](docs/7_cluster_profiler.md)
 
+[Cellphone DB](docs/8_cellphonedb.md)
+
 ...
 
 etc
