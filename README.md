@@ -11,6 +11,8 @@ This is a step-by-step tutorial for analysing the Ribosome-Profiling data.
 
 [Diricore analysis](docs/5_diricore.md)
 
+[Diricore on a subset of genes](/docs/5_diricore_subset.md)
+
 [RiboWaltz analysis (periodicity)](docs/6_ribowaltz.md)
 
 [ClusterProfiler analysis (GO term)](docs/7_cluster_profiler.md)
