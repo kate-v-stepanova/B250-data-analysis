@@ -48,8 +48,11 @@ Subsequence analysis:
 ```
 bsub -q long -R "rusage[mem=50G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore/subsequence_analysis.sh 20910 mm10 50 all_unique
 ``` 
-
-where `20910` is the name of the dataset, `mm10` is the reference genome, `50` is minimal number of reads per gene, `all_unique` means that the script will analyze bam files without duplicated reads.
+The parameters are the following:
+* `20910` is the name of the dataset
+* `mm10` is the reference genome. Other options: `hg19` or `yeast`
+* `50` is minimal number of reads per gene. Any positive integer. Default is 100. 
+* `all_unique` means that the script will analyze bam files without duplicated reads. Another option: `all` - reads with duplicates.
 
 The script will create a data file: `ls -lh /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/subsequence_data/20910.subsequence_data.all.dedup.50.hdf5`
 
