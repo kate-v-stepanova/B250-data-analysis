@@ -1,11 +1,16 @@
 # Demultiplexing
 
+> **_IMPORTANT:_** `$BASE_DIR` has to be specified in your `.bash_profile`. Details [here](docs/0_before_you_start.md)
+
+> **_IMPORTANT 2:_** `fastx_barcode_splitter.pl` has to be downloaded from [here](http://hannonlab.cshl.edu/fastx_toolkit/download.html) and placed into `$BASE_DIR/software/bin`
+
+
+## Download the data
+
+
 Let's take a dataset 20910 as an example. This is a mouse dataset.
 
 
-> **_IMPORTANT:_** `$BASE_DIR` has to be specified in your `.bash_profile`. Details [here](docs/0_before_you_start.md)
-
-## Download the data
 1. When dataset is ready -> the notification will be sent by email
 2. Download the data: `$BASE_DIR/software/preprocessing/0_get_data.sh 20910`
 3. After that the dataset has been downloaded to: `$BASE_DIR/20910`
