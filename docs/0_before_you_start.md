@@ -6,11 +6,13 @@ Before running the bioinformatic scripts, the following has to be configured:
 
 !! This is important!
 
-This has to be set as an environmental variable. When running a script, the script will try to load this variable. 
+`BASE_DIR` has to be set as an environmental variable. When running a script (any script), the script will try to load this variable to find the correct location of the data. 
 
-Open the `.bash_profile`: `vim ~/.bash_profile`
+So, do the following:
 
-And add this line: `export BASE_DIR="/omics/groups/OE0532/internal/from_snapshot/"`
+1. Open the `.bash_profile`: `vim ~/.bash_profile`
+
+2. And add this line: `export BASE_DIR="/omics/groups/OE0532/internal/from_snapshot/"` (or any other dir, which will be used as a base dir)
 
 ## 2. Configure .bash_profile (optionally)
 
