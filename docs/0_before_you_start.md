@@ -44,4 +44,20 @@ export BASE_DIR="/omics/groups/OE0532/internal/from_snapshot/"
 
 Mainly the scripts will be running under python 3.
 
-For the virtual envri
+Load anaconda: `module load anaconda2/2019.07`
+
+Create conda environment: `conda create -n p3 python=3.7` 
+
+Activate env: `conda activate p3` or `source activate p3`
+
+4. Virtual env for python2
+
+Python2 is mainly used by diricore and couple of more tools.
+
+Load anaconda:  `module load anaconda2/2019.07`
+
+Create conda environment: `conda create -n diricore python=2.7` 
+
+Activate env: `conda activate diricore` or `source activate diricore`
+
+
