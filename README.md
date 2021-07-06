@@ -1,6 +1,8 @@
 # B250-data-analysis
 This is a step-by-step tutorial for analysing the Ribosome-Profiling data.
 
+[Before you start](docs/0_before_you_start.md)
+
 [Demultiplexing](docs/1_demultiplex.md)
 
 [rRNA clean-up](docs/2_rRNA_cleanup.md)
