@@ -9,7 +9,7 @@
 ## 1. Create UCSC tracks
 
 ```
-/icgc/dkfzlsdf/analysis/OE0532/software/diricore/generate_ucsc_tracks.sh 21012 mm10 all_unique
+$BASE_DIR/ucsc/1_generate_ucsc_tracks.sh 21012 mm10 all_unique
 ```
 
 This will output the following:
@@ -32,7 +32,7 @@ Copy & paste these commands to submit the jobs.
 ## 2. Create annotation file
 
 ```
-/icgc/dkfzlsdf/analysis/OE0532/software/diricore/ucsc_track_annotation.sh 21012 mm10 all_unique
+$BASE_DIR/software/ucsc/2_ucsc_track_annotation.sh 21012 mm10 all_unique
 ```
 
 This will output the following:
@@ -44,7 +44,7 @@ Created file: /icgc/dkfzlsdf/analysis/OE0532/21012/analysis/output/gen_tracks/al
 ## 3. Upload tracks to the FTP
 
 ```
-python /icgc/dkfzlsdf/analysis/OE0532/software/scripts/ucsc_tracks_to_ftp.py 21012 all_unique
+python $BASE_DIR/software/ucsc/3_ucsc_tracks_to_ftp.py 21012 all_unique
 ```
 
 This will output the following:
@@ -91,7 +91,7 @@ Open the link: http://genome.ucsc.edu/cgi-bin/hgCustom
 
 ### 4.3 Add tracks & select the genome version
 
-Copy & paste the annotation file: `less /icgc/dkfzlsdf/analysis/OE0532/21012/analysis/output/gen_tracks/all_unique/ucsc_track_annotation.txt`
+Copy & paste the annotation file: `less $BASE_DIR/21012/analysis/output/gen_tracks/all_unique/ucsc_track_annotation.txt`
 
 Make sure that the correct genome version is selected.
 
@@ -125,14 +125,14 @@ Now the ucsc link can be shared: http://genome.ucsc.edu/s/stephz/21012_all_uniqu
 
 It is important to regularly check that the files have not been removed. And if so, to upload them again.
 
-This is done with the script: `python /icgc/dkfzlsdf/analysis/OE0532/software/scripts/ucsc_tracks_to_ftp.py`
+This is done with the script: `python $BASE_DIR/software/ucsc/3_ucsc_tracks_to_ftp.py`
 
 To let the script run automatically, set up a [crontab](https://crontab.guru/) with the command `crontab -e`
 
 Add the following line (tab-separated):
 
 ```
-27	6	*	*	*	python /icgc/dkfzlsdf/analysis/OE0532/software/scripts/ucsc_tracks_to_ftp.py
+27	6	*	*	*	python $BASE_DIR/software/ucsc/3_ucsc_tracks_to_ftp.py
 ```
 
 This means, every day at 6:27 am the script will check whether all UCSC tracks which are available on the cluster exist on FTP. If not, will upload them automatically. The user will be notified by email. 
