@@ -4,6 +4,8 @@ Before running the bioinformatic scripts, the following has to be configured:
 
 ## 1. BASE_DIR
 
+!! This is important!
+
 This has to be set as an environmental variable. When running a script, the script will try to load this variable. 
 
 Open the `.bash_profile`: `vim ~/.bash_profile`
