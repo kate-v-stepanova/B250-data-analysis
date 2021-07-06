@@ -59,9 +59,9 @@ Now we can check that the symlinks have been created: `ls -lh $BASE_DIR/20910/an
 
 ```
 total 120K
-lrwxrwxrwx. 1 e984a B250 120 Feb 15 13:51 24.fastq.gz -> $BASE_DIR/20910/210212_VH00211_26_AAAHM3LM5/AS-580536-LR-55520/fastq/AS-580536-LR-55520_R1.fastq.gz
-lrwxrwxrwx. 1 e984a B250 120 Feb 15 13:52 25.fastq.gz -> $BASE_DIR/20910/210212_VH00211_26_AAAHM3LM5/AS-580538-LR-55520/fastq/AS-580538-LR-55520_R1.fastq.gz
-lrwxrwxrwx. 1 e984a B250 120 Feb 15 13:53 26.fastq.gz -> $BASE_DIR/20910/210212_VH00211_26_AAAHM3LM5/AS-580540-LR-55520/fastq/AS-580540-LR-55520_R1.fastq.gz 
+lrwxrwxrwx. 1 e984a B250 120 Feb 15 13:51 24.fastq.gz -> /icgc/dkfzlsdf/analysis/OE0532/20910/210212_VH00211_26_AAAHM3LM5/AS-580536-LR-55520/fastq/AS-580536-LR-55520_R1.fastq.gz
+lrwxrwxrwx. 1 e984a B250 120 Feb 15 13:52 25.fastq.gz -> /icgc/dkfzlsdf/analysis/OE0532/20910/210212_VH00211_26_AAAHM3LM5/AS-580538-LR-55520/fastq/AS-580538-LR-55520_R1.fastq.gz
+lrwxrwxrwx. 1 e984a B250 120 Feb 15 13:53 26.fastq.gz -> /icgc/dkfzlsdf/analysis/OE0532/20910/210212_VH00211_26_AAAHM3LM5/AS-580540-LR-55520/fastq/AS-580540-LR-55520_R1.fastq.gz 
 ```
 
 ## Create annotation files (bc_files)
@@ -100,21 +100,17 @@ S14_Lung8    GCATA
 ```
 
 ## Trim adapter and demultiplex
-1. Trim and demultiplex the subset 24: `bsub -q long -R "rusage[mem=35G]" $BASE_DIR/software/preprocessing/trim_adapter_and_demultiplex.sh 20910 30 24`
-2. Trim and demultiplex the subset 25: `bsub -q long -R "rusage[mem=35G]" $BASE_DIR/software/preprocessing/trim_adapter_and_demultiplex.sh 20910 30 25`
+1. Trim and demultiplex the subset 24: `bsub -q long -R "rusage[mem=35G]" $BASE_DIR/software/preprocessing/1_trim_adapter_and_demultiplex.sh 20910 30 24`
+2. Trim and demultiplex the subset 25: `bsub -q long -R "rusage[mem=35G]" $BASE_DIR/software/preprocessing/1_trim_adapter_and_demultiplex.sh 20910 30 25`
 3. Trim and demultiplex the subset 26: `bsub -q long -R "rusage[mem=35G]" $BASE_DIR/software/preprocessing/1_trim_adapter_and_demultiplex.sh 20910 30 26`
 
 where `30` is min read length, `24`, `25` and `26` are the subsets.
 
-This will allow to process all 3 subsets in parallel -> will save the time. 
-
-> *_NOTE:_* However, it is also possible just to submit one job for the whole dataset: `bsub -q long -R "rusage[mem=35G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore/trim_adapter_and_demultiplex.sh 20910`. 
-
-In this case all subsets will be processed one by one, which increased the processing time. 
+This will allow to process all 3 subsets in parallel.
 
 > *_NOTE:_* The command `bsub` submits the job to the cluster. The job will be running for a few hours. Once it's done (or failed), the notification will be sent by email. 
 
-If the job has failed, the output will be included in the email. Then you need to read it. This might help to figure out what exactly went wrong.
+If the job has failed, the output will be included in the email. This might help to figure out what exactly went wrong.
 
 ## Results
 
@@ -127,15 +123,15 @@ As a result the following has been done:
 
 
 ###  Cutadapt output
-1. Trimmed files. `ls -lh /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/input/merged/*_trimmed.fastq.gz`
+1. Trimmed files. `ls -lh $BASE_DIR/20910/analysis/input/merged/*_trimmed.fastq.gz`
 
 ```
--rw-r--r--. 1 e984a B250 2.4G Feb 15 14:58 /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/input/merged/24_trimmed.fastq.gz
--rw-r--r--. 1 e984a B250 2.2G Feb 15 17:17 /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/input/merged/25_trimmed.fastq.gz
--rw-r--r--. 1 e984a B250 286M Feb 15 18:29 /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/input/merged/26_trimmed.fastq.gz
+-rw-r--r--. 1 e984a B250 2.4G Feb 15 14:58 $BASE_DIR/20910/analysis/input/merged/24_trimmed.fastq.gz
+-rw-r--r--. 1 e984a B250 2.2G Feb 15 17:17 $BASE_DIR/OE0532/20910/analysis/input/merged/25_trimmed.fastq.gz
+-rw-r--r--. 1 e984a B250 286M Feb 15 18:29 $BASE_DIR/20910/analysis/input/merged/26_trimmed.fastq.gz
 ```
 
-2. Stats files. `ls -lh /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/*cutadapt_trimming_stats.txt`
+2. Stats files. `ls -lh $BASE_DIR/20910/analysis/output/*cutadapt_trimming_stats.txt`
 
 ```
 -rw-r--r--. 1 e984a B250 4.0K Feb 15 14:58 /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/24_cutadapt_trimming_stats.txt
@@ -144,7 +140,7 @@ As a result the following has been done:
 ```
 
 ### Fastx-toolkit barcode_splitter output
-The demultiplexed samples will be located here: `ls -lh /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/demultiplexed`
+The demultiplexed samples will be located here: `ls -lh $BASE_DIR/20910/analysis/output/demultiplexed`
 
 ```
 total 47G
@@ -170,7 +166,7 @@ total 47G
 ### UMI-tools output
 UMI-tools `umi_tools extract` command extracts UMI (in our case 5nt long) from each read, and adds this information in the header. Then later, after alignment is done, the duplicate reads (containing the same UMI-sequence) can be removed with the command `umi_tools dedup`.
 
-The script will output the files to `umi_extract` directory. Check it out: `ls -lh /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/umi_extract`:
+The script will output the files to `umi_extract` directory. Check it out: `ls -lh $BASE_DIR/20910/analysis/output/umi_extract`:
 
 ```
 -rw-r--r--. 1 e984a B250 149M Feb 15 18:41 dem_S10_T_Pool1_umi_extracted.fastq.gz
@@ -197,7 +193,7 @@ drwxr-sr-x. 2 e984a B250  612 Feb 15 22:19 logs
 
 ### Cutadapt QC
 As a cutadapt QC, we need to check that cutadapt found an adapter sequence (at least partially) in most of the reads. 
-Let's take a look at the `trimming_stats` files: `less /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/24_cutadapt_trimming_stats.txt`.
+Let's take a look at the `trimming_stats` files: `less $BASE_DIR/20910/analysis/output/24_cutadapt_trimming_stats.txt`.
 
 ```
 === Summary ===
@@ -210,12 +206,12 @@ Reads written (passing filters):   145,755,324 (71.5%)
 
 We can see that 98% of reads had an adapter sequence, which is perfect. 71,5% of the reads have been written. This is fine.
 
-> **_NOTE:_** If the number of written reads is too low, we can increase this number by selecting shorter reads. Default min length is 30. To decrease min length, re-run the script with an additional parameter: `bsub -q long -R "rusage[mem=35G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore/trim_adapter_and_demultiplex.sh 20910 24 25`, where 25 is the min read length. 
+> **_NOTE:_** If the number of written reads is too low, we can increase this number by selecting shorter reads. Default min length is 30. To decrease min length, re-run the script with an additional parameter: `bsub -q long -R "rusage[mem=35G]" $BASE_DIR/software/preprocessing/1_trim_adapter_and_demultiplex.sh 20910 24 25`, where 25 is the min read length. 
 
 > **_NOTE:_** it is NOT recommended to take reads shorter than 25. Because this length will be decreased even more in the next steps. 5nts will be removed as UMI, and 5nts will be removed as a barcode. So in the end we get a read with the length 15nts, which is not ideal for the alignment. 
 
 ### BC_split stats QC
-BC split will create a `bc_split_stats.txt` file for each subset: `ls -lh ls -lh /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/*bc_split_stats.txt`
+BC split will create a `bc_split_stats.txt` file for each subset: `ls -lh $BASE_DIR/20910/analysis/output/*bc_split_stats.txt`
 
 ```
 -rw-r--r--. 1 e984a B250 676 Feb 15 15:23 /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/24_bc_split_stats.txt
@@ -223,7 +219,7 @@ BC split will create a `bc_split_stats.txt` file for each subset: `ls -lh ls -lh
 -rw-r--r--. 1 e984a B250 670 Feb 15 18:34 /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/26_bc_split_stats.txt
 ```
 
-Let's see how many reads per sample we get: `less /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/24_bc_split_stats.txt`
+Let's see how many reads per sample we get: `less $BASE_DIR/20910/analysis/output/24_bc_split_stats.txt`
 
 ```
 Barcode Count   Location
@@ -243,9 +239,9 @@ This looks fine.
 1. Extract the cutadapt stats from the cutadapt output:
 
 ```
-/icgc/dkfzlsdf/analysis/OE0532/software/diricore/utils/subset_cutadapt_stats.sh 20910 24
-/icgc/dkfzlsdf/analysis/OE0532/software/diricore/utils/subset_cutadapt_stats.sh 20910 25
-/icgc/dkfzlsdf/analysis/OE0532/software/diricore/utils/subset_cutadapt_stats.sh 20910 26
+$BASE_DIR/software/preprocessing/stats/subset_cutadapt_stats.sh 20910 24
+$BASE_DIR/software/preprocessing/stats/subset_cutadapt_stats.sh 20910 25
+$BASE_DIR/software/preprocessing/stats/subset_cutadapt_stats.sh 20910 26
 ```
 
 ###  Plot separately for each subset
@@ -253,14 +249,14 @@ Sometimes it is necessary to plot each subset separately in a separate plot. Thi
 ```
 module load R/3.5.1
 module load gcc/7.2.0
-Rscript /icgc/dkfzlsdf/analysis/OE0532/software/diricore/plot_star_alignment_stats.r 20910 24
-Rscript /icgc/dkfzlsdf/analysis/OE0532/software/diricore/plot_star_alignment_stats.r 20910 25
-Rscript /icgc/dkfzlsdf/analysis/OE0532/software/diricore/plot_star_alignment_stats.r 20910 26
+Rscript $BASE_DIR/software/preprocessing/stats/plot_basic_stats.r 20910 24
+Rscript $BASE_DIR/software/preprocessing/stats/plot_basic_stats.r 20910 25
+Rscript $BASE_DIR/software/preprocessing/stats/plot_basic_stats.r 20910 26
 ```
 
 Alternatively, open the RStudio: `https://odcf-rstudio01.dkfz.de/` and run the script from there. 
 
-As an output we get 3 cutadapt plots and 3 bc split plots: `ls -lh /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/figures/`
+As an output we get 3 cutadapt plots and 3 bc split plots: `ls -lh $BASE_DIR/20910/analysis/output/figures/`
 ```
 total 400K
 -rw-r--r--. 1 e984a B250 4.7K Feb 16 11:20 24_BCsplit_stats.pdf
@@ -273,21 +269,21 @@ total 400K
 
 ### Plot cutadapt stats (all samples in one plot)
 If we need to plot all samples together, we need to merge stats from all subsets into one file.
-Merge cutadapt stats: `/icgc/dkfzlsdf/analysis/OE0532/software/diricore/utils/multiple_cutadapt_stats.sh 20910`
-Merge bc_split stats: `/icgc/dkfzlsdf/analysis/OE0532/software/diricore/utils/multiple_bc_split_stats.sh 20910`
+Merge cutadapt stats: ` $BASE_DIR/software/preprocessing/stats/multiple_cutadapt_stats.sh 20910`
+Merge bc_split stats: ` $BASE_DIR/software/preprocessing/stats/multiple_bc_split_stats.sh 20910`
 
 This will create 2 files:
 
 ```
-/icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/cutadapt_plot_stats.txt
-/icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/bc_split_stats.txt
+ $BASE_DIR/20910/analysis/output/cutadapt_plot_stats.txt
+ $BASE_DIR/20910/analysis/output/bc_split_stats.txt
 ```
 
 Now, let's create a plot: 
 ```
 module load R/3.5.1
 module load gcc/7.2.0
-Rscript /icgc/dkfzlsdf/analysis/OE0532/software/diricore/plot_star_alignment_stats.r 20910
+Rscript $BASE_DIR/software/preprocessing/stats/plot_basic_stats.r  20910
 ```
 
 Or, simply run it from the RStudio: `https://odcf-rstudio01.dkfz.de/`
