@@ -1,11 +1,14 @@
 # Demultiplexing
+
 Let's take a dataset 20910 as an example. This is a mouse dataset.
+
+
+> **_IMPORTANT:_** `$BASE_DIR` has to be specified in your `.bash_profile`. Details [here](docs/0_before_you_start.md)
 
 ## Download the data
 1. When dataset is ready -> the notification will be sent by email
-2. Download the data: `/icgc/dkfzlsdf/analysis/OE0532/software/diricore/utils/get_data.sh 20910`
-3. After that the dataset has been downloaded to: `/icgc/dkfzlsdf/analysis/OE0532/20910`
-4. If the data needs to be downloaded to another location (or under another username) then open the script and modify it:  `/icgc/dkfzlsdf/analysis/OE0532/software/diricore/utils/get_data.sh`
+2. Download the data: `$BASE_DIR/software/preprocessing/0_get_data.sh 20910`
+3. After that the dataset has been downloaded to: `$BASE_DIR/20910`
 
 ## Sequencing information
 Now let's see what kind of dataset we received.
@@ -17,7 +20,7 @@ We get a table which looks more or less like that:
 
 2. From that we know our Run ID: `210212_VH00211_26_AAAHM3LM5`. 
 
-So we know that our raw data is here: `ls -lh /icgc/dkfzlsdf/analysis/OE0532/20910/210212_VH00211_26_AAAHM3LM5`
+So we know that our raw data is here: `ls -lh $BASE_DIR/20910/210212_VH00211_26_AAAHM3LM5`
 
 ```
 -rwxr-x---. 1 e984a B250 2.1K Feb 15 10:29 210212_VH00211_26_AAAHM3LM5_meta.tsv
@@ -35,25 +38,25 @@ drwxr-s---. 3 e984a B250   23 Feb 15 10:29 Undetermined_1
 
 `AS-580540-LR-55520_R1` is `26`
 
-The same info we can get from the `meta.tsv` file which is located here: `/icgc/dkfzlsdf/analysis/OE0532/20910/20910_meta.tsv`
+The same info we can get from the `meta.tsv` file which is located here: `$BASE_DIR/20910/20910_meta.tsv`
 
 ## Create symlinks
-Before running the script, we need to put the files in the correct directory. Which is this one: `/icgc/dkfzlsdf/analysis/OE0532/20910/analysis/input/merged/`. The script will look for `.fastq` files in that directory.
+Before running the script, we need to put the files in the correct directory. Which is this one: `$BASE_DIR/20910/analysis/input/merged/`. The script will look for `.fastq` files in that directory.
 
 So, let's create symlinks.
-1. Symlink for the subset 24:  `ln -s /icgc/dkfzlsdf/analysis/OE0532/20910/210212_VH00211_26_AAAHM3LM5/AS-580536-LR-55520/fastq/AS-580536-LR-55520_R1.fastq.gz /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/input/merged/24.fastq.gz`
+1. Symlink for the subset 24:  `ln -s $BASE_DIR/20910/210212_VH00211_26_AAAHM3LM5/AS-580536-LR-55520/fastq/AS-580536-LR-55520_R1.fastq.gz $BASE_DIR/20910/analysis/input/merged/24.fastq.gz`
 
-2. Symlink for the subset 25: `ln -s /icgc/dkfzlsdf/analysis/OE0532/20910/210212_VH00211_26_AAAHM3LM5/AS-580538-LR-55520/fastq/AS-580538-LR-55520_R1.fastq.gz /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/input/merged/25.fastq.gz`
+2. Symlink for the subset 25: `ln -s $BASE_DIR/20910/210212_VH00211_26_AAAHM3LM5/AS-580538-LR-55520/fastq/AS-580538-LR-55520_R1.fastq.gz $BASE_DIR/20910/analysis/input/merged/25.fastq.gz`
 
-3. Symlink for the subset 26: `ln -s /icgc/dkfzlsdf/analysis/OE0532/20910/210212_VH00211_26_AAAHM3LM5/AS-580540-LR-55520/fastq/AS-580540-LR-55520_R1.fastq.gz /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/input/merged/26.fastq.gz` 
+3. Symlink for the subset 26: `ln -s $BASE_DIR/20910/210212_VH00211_26_AAAHM3LM5/AS-580540-LR-55520/fastq/AS-580540-LR-55520_R1.fastq.gz $BASE_DIR/20910/analysis/input/merged/26.fastq.gz` 
 
-Now we can check that the symlinks have been created: `ls -lh /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/input/merged`
+Now we can check that the symlinks have been created: `ls -lh $BASE_DIR/20910/analysis/input/merged`
 
 ```
 total 120K
-lrwxrwxrwx. 1 e984a B250 120 Feb 15 13:51 24.fastq.gz -> /icgc/dkfzlsdf/analysis/OE0532/20910/210212_VH00211_26_AAAHM3LM5/AS-580536-LR-55520/fastq/AS-580536-LR-55520_R1.fastq.gz
-lrwxrwxrwx. 1 e984a B250 120 Feb 15 13:52 25.fastq.gz -> /icgc/dkfzlsdf/analysis/OE0532/20910/210212_VH00211_26_AAAHM3LM5/AS-580538-LR-55520/fastq/AS-580538-LR-55520_R1.fastq.gz
-lrwxrwxrwx. 1 e984a B250 120 Feb 15 13:53 26.fastq.gz -> /icgc/dkfzlsdf/analysis/OE0532/20910/210212_VH00211_26_AAAHM3LM5/AS-580540-LR-55520/fastq/AS-580540-LR-55520_R1.fastq.gz 
+lrwxrwxrwx. 1 e984a B250 120 Feb 15 13:51 24.fastq.gz -> $BASE_DIR/20910/210212_VH00211_26_AAAHM3LM5/AS-580536-LR-55520/fastq/AS-580536-LR-55520_R1.fastq.gz
+lrwxrwxrwx. 1 e984a B250 120 Feb 15 13:52 25.fastq.gz -> $BASE_DIR/20910/210212_VH00211_26_AAAHM3LM5/AS-580538-LR-55520/fastq/AS-580538-LR-55520_R1.fastq.gz
+lrwxrwxrwx. 1 e984a B250 120 Feb 15 13:53 26.fastq.gz -> $BASE_DIR/20910/210212_VH00211_26_AAAHM3LM5/AS-580540-LR-55520/fastq/AS-580540-LR-55520_R1.fastq.gz 
 ```
 
 ## Create annotation files (bc_files)
@@ -61,7 +64,7 @@ To demultiplex the data, we need to create annotation files (bc_files). These fi
 
 > **_NOTE:_** The name of the `bc_file` should end with the name of the `.fastq` file, so that the script knows which bc file is for which fastq file. E.g. for the subset 24 the fastq file is named `24.fastq.gz` and bc file is named `bc_file_24.txt`
 
-1. bc_file for the subset 24: `vim /icgc/dkfzlsdf/analysis/OE0532/20910/analysis/input/metadata/bc_file_24.txt`
+1. bc_file for the subset 24: `vim $BASE_DIR/20910/analysis/input/metadata/bc_file_24.txt`
 
 ```
 S5_T_Pool2    ATCGT
@@ -71,7 +74,7 @@ S8_Liver6    GATCA
 S9_Liver8    GCATA
 ```
 
-2. bc_file for the subset 25: `/icgc/dkfzlsdf/analysis/OE0532/20910/analysis/input/metadata/bc_file_25.txt`
+2. bc_file for the subset 25: `$BASE_DIR/20910/analysis/input/metadata/bc_file_25.txt`
 
 ```
 S1_T2_late    AGCTA
@@ -81,7 +84,7 @@ S4_4T1_Ctrl    GATCA
 ```
 
 
-3. bc_file for the subset 26: `/icgc/dkfzlsdf/analysis/OE0532/20910/analysis/input/metadata/bc_file_26.txt`
+3. bc_file for the subset 26: `$BASE_DIR/20910/analysis/input/metadata/bc_file_26.txt`
 
 ```
 S10_T_Pool1    ATCGT
@@ -92,9 +95,9 @@ S14_Lung8    GCATA
 ```
 
 ## Trim adapter and demultiplex
-1. Trim and demultiplex the subset 24: `bsub -q long -R "rusage[mem=35G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore/trim_adapter_and_demultiplex.sh 20910 30 24`
-2. Trim and demultiplex the subset 25: `bsub -q long -R "rusage[mem=35G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore/trim_adapter_and_demultiplex.sh 20910 30 25`
-3. Trim and demultiplex the subset 26: `bsub -q long -R "rusage[mem=35G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore/trim_adapter_and_demultiplex.sh 20910 30 26`
+1. Trim and demultiplex the subset 24: `bsub -q long -R "rusage[mem=35G]" $BASE_DIR/software/preprocessing/trim_adapter_and_demultiplex.sh 20910 30 24`
+2. Trim and demultiplex the subset 25: `bsub -q long -R "rusage[mem=35G]" $BASE_DIR/software/preprocessing/trim_adapter_and_demultiplex.sh 20910 30 25`
+3. Trim and demultiplex the subset 26: `bsub -q long -R "rusage[mem=35G]" $BASE_DIR/software/preprocessing/1_trim_adapter_and_demultiplex.sh 20910 30 26`
 
 where `30` is min read length, `24`, `25` and `26` are the subsets.
 
