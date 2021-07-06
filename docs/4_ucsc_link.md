@@ -1,5 +1,11 @@
 # UCSC link
 
+> **_IMPORTANT:_** `$BASE_DIR` has to be specified in your `.bash_profile`. Details [here](docs/0_before_you_start.md)
+
+> **_IMPORTANT 2:_** The following tools are required and have to be placed into `$BASE_DIR/software/bin`:
+> [bedtools v2.25.0](https://bedtools.readthedocs.io/en/latest/), [bedClip](http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/bedClip), [bedGraphToBigWig](http://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/bedGraphToBigWig)
+
+
 ## 1. Create UCSC tracks
 
 ```
