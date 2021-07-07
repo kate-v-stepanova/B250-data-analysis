@@ -132,7 +132,7 @@ To let the script run automatically, set up a [crontab](https://crontab.guru/) w
 Add the following line (tab-separated):
 
 ```
-27	6	*	*	*	python $BASE_DIR/software/ucsc/3_ucsc_tracks_to_ftp.py
+21  6   *   *   *   python /omics/groups/OE0532/internal/from_snapshot/software/ucsc/3_ucsc_tracks_to_ftp.py
 ```
 
-This means, every day at 6:27 am the script will check whether all UCSC tracks which are available on the cluster exist on FTP. If not, will upload them automatically. The user will be notified by email. 
+This means, every day at 6:21 am the script will check whether all UCSC tracks which are available on the cluster exist on FTP. If not, will upload them automatically. The user will be notified by email. 
