@@ -14,29 +14,29 @@ We use the reference genome [hg19](https://www.gencodegenes.org/human/release_19
 
 1. Download genome sequences: `Genome sequence (GRCh37.p13)`
 ```
-curl ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_19/GRCh37.p13.genome.fa.gz /icgc/dkfzlsdf/analysis/OE0532/static/hg19/GRCh37.p13.genome.fa
+curl ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_19/GRCh37.p13.genome.fa.gz $BASE_DIR/static/hg19/GRCh37.p13.genome.fa
 ```
 
 2. Download annotation file: `Comprehensive gene annotation` 
 
 ```
-curl ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_19/gencode.v19.annotation.gtf.gz /icgc/dkfzlsdf/analysis/OE0532/static/hg19/gencode.v19.annotation.gtf
+curl ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_19/gencode.v19.annotation.gtf.gz $BASE_DIR/hg19/gencode.v19.annotation.gtf
 ```
 
 3. Build STAR index 
 
 ```
 bsub -q long -R "rusage[mem=100G]" STAR --runThreadN 4 --runMode genomeGenerate 
-    --genomeDir /icgc/dkfzlsdf/analysis/OE0532/static/hg19 
-    --genomeFastaFiles /icgc/dkfzlsdf/analysis/OE0532/static/hg19/GRCh37.p13.genome.fa 
-    --sjdbGTFfile /icgc/dkfzlsdf/analysis/OE0532/static/hg19/gencode.v19.annotation.gtf --sjdbOverhang 100
+    --genomeDir $BASE_DIR/static/hg19 
+    --genomeFastaFiles $BASE_DIR/hg19/GRCh37.p13.genome.fa 
+    --sjdbGTFfile $BASE_DIR/static/hg19/gencode.v19.annotation.gtf --sjdbOverhang 100
 ```
 
 ## Alignment
 
-Align: `/icgc/dkfzlsdf/analysis/OE0532/software/diricore/align_to_transcriptome.sh 20910 mm10 80G`
+Align: `$BASE_DIR/software/preprocessing/3_alignment/1_align_to_transcriptome.sh 20910 mm10 80G`
 
-The script takes input file from the clean directory: `/icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/clean`
+The script takes input file from the clean directory: `$BASE_DIR/20910/analysis/output/clean`
 
 * `20910` is the name of the dataset
 
@@ -46,8 +46,8 @@ The script takes input file from the clean directory: `/icgc/dkfzlsdf/analysis/O
 
 STAR outputs 2 types of bam files into the following directories: 
 
-* `/icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/alignments/toGenome`
-* `/icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/alignments/toTranscriptome`
+* `$BASE_DIR/20910/analysis/output/alignments/toGenome`
+* `$BASE_DIR/20910/analysis/output/alignments/toTranscriptome`
 
 `toGenome` directory contains bam files with the genome-based coordinates, e.g. `chr1 pos 9877`. These bam files will be used for the further analysis, such as `diricore`
 
@@ -57,7 +57,7 @@ STAR outputs 2 types of bam files into the following directories:
 
 After the alignment is done, let's get rid of the duplicated reads (PCR artifacts)
 
-1. Deduplicate genome: `/icgc/dkfzlsdf/analysis/OE0532/software/diricore/deduplicate_umi.sh 20910 all`
+1. Deduplicate genome: `$BASE_DIR/software/preprocessing/3_align/2_deduplicate_umi.sh 20910 all`
 
 This will output the following: 
 
@@ -80,7 +80,7 @@ bsub -q long -R "rusage[mem=10G]" /icgc/dkfzlsdf/analysis/OE0532/tmp/20910/dedup
 
 Just copy & paste these commands to submit the jobs to the cluster.
 
-2. Deduplicate transcriptome: `/icgc/dkfzlsdf/analysis/OE0532/software/diricore/deduplicate_umi.sh 20910 all --trans`
+2. Deduplicate transcriptome: `$BASE_DIR/software/preprocessing/3_align/2_deduplicate_umi.sh 20910 all --trans`
 
 These will output the following: 
 
@@ -132,22 +132,32 @@ In each directory `toGenome` and `toTranscriptome` we can see the following file
 
 ### Alignment stats
 
+0. Load samtools
+
+To get the alignment stats, [samtools](http://quinlanlab.org/tutorials/samtools/samtools.html) is required. 
+
+On the cluster the samtools can be loaded with this command: 
+
+```
+module load samtools
+```
+
 1. Get alignment stats 
 
 ```
-bsub -q medium -R "rusage[mem=30G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore/get_alignment_stats.sh 20910
+bsub -q medium -R "rusage[mem=30G]" $BASE_DIR/software/preprocessing/stats/get_alignment_stats.sh 20910
 ```
 
 2. Aggregate stats into 1 file 
 
 ```
-python /icgc/dkfzlsdf/analysis/OE0532/software/diricore/get_alignment_stats_2.py 20910
+python $BASE_DIR/software/preprocessing/stats/get_alignment_stats_2.py 20910
 ```
 
 3. Plot alignment stats
 
 ```
-module load gcc/7.2.0 && module load R/3.5.1 && Rscript /icgc/dkfzlsdf/analysis/OE0532/software/diricore/plot_star_alignment_stats2.r 20910
+module load gcc/7.2.0 && module load R/3.5.1 && Rscript $BASE_DIR/software/preprocessing/stats/plot_star_alignment_stats.r 20910
 ```
 
 The alignments plot looks like that: 
