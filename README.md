@@ -27,6 +27,8 @@ This is a step-by-step tutorial for analysing the Ribosome-Profiling (and other)
 
 10. [Cellphone DB](docs/8_cellphonedb.md)
 
+11. [RiboDiff (Translational Efficiency)](docs/10_ribodiff.md) 
+
 
 ## Simple data extraction / simpe plots
 
