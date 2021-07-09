@@ -1,5 +1,7 @@
 # B250-data-analysis
-This is a step-by-step tutorial for analysing the Ribosome-Profiling data.
+This is a step-by-step tutorial for analysing the Ribosome-Profiling (and other) data.
+
+## Data Preprocessing
 
 1. [Before you start](docs/0_before_you_start.md)
 
@@ -8,6 +10,8 @@ This is a step-by-step tutorial for analysing the Ribosome-Profiling data.
 3. [rRNA clean-up](docs/2_rRNA_cleanup.md)
 
 4. [Alignment](docs/3_align.md)
+
+## Common analysis
 
 5. [UCSC link](docs/4_ucsc_link.md)
 
@@ -19,7 +23,17 @@ This is a step-by-step tutorial for analysing the Ribosome-Profiling data.
 
 9. [ClusterProfiler analysis (GO term)](docs/7_cluster_profiler.md)
 
+## Special analysis
+
 10. [Cellphone DB](docs/8_cellphonedb.md)
+
+
+## Simple data extraction / simpe plots
+
+11. [Normalized counts](docs/9_normalized_counts.md)
+
+
+
 
 ...
 
