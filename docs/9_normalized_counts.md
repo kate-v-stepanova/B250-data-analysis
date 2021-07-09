@@ -38,6 +38,10 @@ Output dir: `$BASE_DIR//21221/analysis/output/alignments/reads_per_gene/normaliz
 python $BASE_DIR/software/counts/3_aggregate.py 21221 all_unique rpkm 50 
 ```
 
+This will extract all genes which have at least 50 reads in each sample. 
+
+The output will be written into this file: `/omics/groups/OE0532/internal/from_snapshot/21221/analysis/output/alignments/reads_per_gene/normalized//all_unique/rpkm_50min_reads.tsv`
+
 ## 4. Aggregate samples into 1 file and extract specific genes
 
 Let's say we are only interested in a specific subset of genes, for example [this ones](http://ribosome.med.miyazaki-u.ac.jp/rpg.cgi?mode=orglist&org=Homo%20sapiens)
@@ -90,12 +94,17 @@ python $BASE_DIR/software/counts/3_aggregate.py 21221 all_unique rpkm 0  $BASE_D
 
 The parameters are the following: 
 
-`21221` - project_id
-`all_unique` - bam_type
-`rpkm` - type of normalization (can be: `rpkm`, `tpm`, `cpm` or `raw`)
-`0` - min number of reads. In this case we want to get all genes regardless the number of reads. 
-`$BASE_DIR/21221/analysis/input/metadata/RPG_small.txt` - path to the list of genes
-`gene_name` - how we want to represent the counts (possible options: `gene` or `gene_name`, `gene_id`, `trans` or `transcript` or `trans_id` or `transcript_id`)
+* `21221` - project_id
+
+* `all_unique` - bam_type
+
+* `rpkm` - type of normalization (can be: `rpkm`, `tpm`, `cpm` or `raw`)
+
+* `0` - min number of reads. In this case we want to include all genes regardless the number of reads. 
+
+* `$BASE_DIR/21221/analysis/input/metadata/RPG_small.txt` - path to the list of genes
+
+* `gene_name` - how we want to represent the counts (possible options: `gene` or `gene_name`, `gene_id`, `trans` or `transcript` or `trans_id` or `transcript_id`)
 
 Output will be written into this file: `/omics/groups/OE0532/internal/from_snapshot/21221/analysis/output/alignments/reads_per_gene/normalized//all_unique/RPG_small_rpkm_0min_reads.tsv`
 
