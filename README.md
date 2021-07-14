@@ -33,7 +33,7 @@ This is a step-by-step tutorial for analysing the Ribosome-Profiling (and other)
 ## Simple data extraction / simpe plots
 
 11. [Normalized counts](docs/9_normalized_counts.md)
-
+12. [Read size distribution](docs/11_size_distribution.md)
 
 
 
