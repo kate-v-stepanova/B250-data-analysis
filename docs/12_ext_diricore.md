@@ -64,7 +64,7 @@ mkdir -p $BASE_DIR/22276/analysis/output/ext_diricore/all_unique/p_offset
 Copy data files:
 
 ```
-for f in $(ls $BASE_DIR/22276/analysis/output/plastid/p_offsets/all_unique/*p_offsets.txt); do echo "cp $f $BASE_DIR/22276/analysis/output/ext_diricore/all_unique/p_offset/"; done
+for f in $(ls $BASE_DIR/22276/analysis/output/figures/p_offsets/all_unique/*p_offsets.txt); do echo "cp $f $BASE_DIR/22276/analysis/output/ext_diricore/all_unique/p_offset/"; done
 ```
 
 Remove lines starting with `#`:
@@ -72,3 +72,52 @@ Remove lines starting with `#`:
 ```
 for f in $(ls $BASE_DIR/22276/analysis/output/ext_diricore/all_unique/p_offset/*); do echo "cat $f | grep -v '^#' | grep -v default > $f"1; echo "mv $f"1 $f; done
 ```
+
+Now the offset file will look like that:
+
+```
+length  p_offset
+25      7
+26      10
+27      9
+28      10
+29      11
+30      12
+31      13
+32      14
+33      5
+34      15
+35      13
+```
+
+So we have to remove the lines which don't look that good. In this case, the final result will look like that:
+
+```
+length  p_offset
+28  10
+29  11
+30  12
+31  13
+32  14
+```
+
+How do we know which ones look good and which ones don't? Generally, the perfect lengths are around 28-30 and perfect offset is around 12. If we see that the offset is too low (e.g. 7 or 5) or too high (e.g. 20 or 50) - discard these rows. 
+
+In this case the length 33 has offset 5 - this looks wierd, so I remove everything after 33. 
+
+Also, the default value is 13, so if we see too many 13s - most likely something is wrong. 
+
+Repeat this for all samples.
+
+## 5. Get normalized counts 
+
+```
+bsub -q long -R "rusage[mem=20G]" python $BASE_DIR/software/counts/2_normalize_counts.py 22276 all_unique hg19
+```
+
+## 6. Get psites counts 
+
+```
+bsub -q long -R "rusage[mem=20G]" python $BASE_DIR/software/ext_diricore/5_psites_counts_3.py 22276 all_unique 20 hg19
+```
+
