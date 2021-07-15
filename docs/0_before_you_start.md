@@ -50,6 +50,9 @@ export R3_6_DIR="/omics/groups/OE0532/internal/RStudio_3.6.2"
 export R3_4_DIR="/omics/groups/OE0532/internal/RStudio_3.4"
 
 
+# conda
+module load anaconda2/2019.07
+
 # RStudio
 if ps -e | grep -q rserver; then
   module load gcc/7.2.0
@@ -59,9 +62,6 @@ if ps -e | grep -q rserver; then
 else
     source activate p3
 fi
-
-# conda
-module load anaconda2/2019.07
 ```
 
 ## 4. Virtual env for python3
