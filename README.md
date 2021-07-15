@@ -29,6 +29,8 @@ This is a step-by-step tutorial for analysing the Ribosome-Profiling (and other)
 
 11. [RiboDiff (Translational Efficiency)](docs/10_ribodiff.md) 
 
+12. [Ext Diricore (P-site signalling)](docs/12_ext_diricore.md)
+
 
 ## Simple data extraction / simpe plots
 
