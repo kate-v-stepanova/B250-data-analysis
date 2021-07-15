@@ -68,7 +68,7 @@ To demultiplex the data, we need to create annotation files (bc_files). These fi
 
 > **_NOTE:_** The name of the `bc_file` should end with the name of the `.fastq` file, so that the script knows which bc file is for which fastq file. E.g. for the subset 24 the fastq file is named `24.fastq.gz` and bc file is named `bc_file_24.txt`
 
-> **_SMALL HINT:_** Sample names should not start with a number! Some scripts (e.g. RiboWaltz) will fail! E.g. sample `231_3D_24h_AUF` is not a valid name. 
+> **_SMALL HINT:_** Sample names should not start with a number! Some scripts (e.g. RiboWaltz) will fail! E.g. sample `231_3D_24h_AUF` is not a valid name. Example of a valid name: `S1_231_3D_24h_AUF`
 
 1. bc_file for the subset 24: `vim $BASE_DIR/20910/analysis/input/metadata/bc_file_24.txt`
 
