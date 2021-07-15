@@ -4,6 +4,7 @@
 
 > **_IMPORTANT 2:_** `fastx_barcode_splitter.pl` has to be downloaded from [here](http://hannonlab.cshl.edu/fastx_toolkit/download.html) and placed into `$BASE_DIR/software/bin`
 
+> **_Small hint:_** Sample names should not start with a number! Some scripts (e.g. RiboWaltz) will fail! E.g. sample `231_3D_24h_AUF` is not a valid name. 
 
 ## Download the data
 
