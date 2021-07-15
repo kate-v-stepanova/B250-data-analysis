@@ -4,8 +4,8 @@
 
 > **_IMPORTANT 2:_** `fastx_barcode_splitter.pl` has to be downloaded from [here](http://hannonlab.cshl.edu/fastx_toolkit/download.html) and placed into `$BASE_DIR/software/bin`
 
-## Download the data
 
+## Download the data
 
 Let's take a dataset 20910 as an example. This is a mouse dataset.
 
