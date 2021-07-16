@@ -215,10 +215,15 @@ Let's say we want to perform this analysis only on mitochondrial genes.
 
 ```
 bsub -R "rusage[mem=10G]" $BASE_DIR/software/ext_diricore/1_get_seq_from_bam.sh 22276 all_unique $BASE_DIR/static/hg19/MT-transcripts.txt
-mv $BASE_DIR/22276/analysis/output/ext_diricore/all_unique_MT-transcripts $BASE_DIR/22276/analysis/output/ext_diricore/all_unique_MT-genes
 ```
 
-The output will be: `$BASE_DIR/22276/analysis/output/ext_diricore/all_unique_MT-genes/tsv/`
+The output will be: `$BASE_DIR/22276/analysis/output/ext_diricore/all_unique_MT-transcripts/tsv/`
+
+For convenience, I rename this dir: 
+
+```
+mv $BASE_DIR/22276/analysis/output/ext_diricore/all_unique_MT-transcripts $BASE_DIR/22276/analysis/output/ext_diricore/all_unique_MT-genes
+```
 
 ## 2. Create bam files with MT-genes only
 
@@ -264,9 +269,9 @@ for f in $(ls $BASE_DIR/22276/analysis/output/diricore_subset/all_unique_MT-gene
 done
 ```
 
-## Psite analysis
+## 3. Psite analysis
 
-From here just perform the steps from the original `Ext diricore` [analysis](/docs/12_ext_diricore.md)
+From here just perform the steps from the original [Ext diricore analysis](#ext-diricore-p-site-signalling)
 
 After that, all intermediate files can be removed:
 
