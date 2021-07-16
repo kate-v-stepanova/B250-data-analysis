@@ -115,9 +115,63 @@ Repeat this for all samples.
 bsub -q long -R "rusage[mem=20G]" python $BASE_DIR/software/counts/2_normalize_counts.py 22276 all_unique hg19
 ```
 
+Output dir: `$BASE_DIR/22276/analysis/output/alignments/reads_per_gene/normalized/`
+
 ## 6. Get psites counts 
 
 ```
 bsub -q long -R "rusage[mem=20G]" python $BASE_DIR/software/ext_diricore/5_psites_counts_3.py 22276 all_unique 20 hg19
 ```
+
+Output dir1: `$BASE_DIR/22276/analysis/output/ext_diricore/all_unique/psites`
+Output dir2: `$BASE_DIR/22276/analysis/output/ext_diricore/all_unique/psites_dotplot`
+
+## 7. Plot results
+
+The psite counts have been calculated with 3 types of normalization: CPM, TPM and RPKM. We can choose which normalization we use in the plots (tpm is default)
+
+
+### Plot psites per sample 
+
+TPM:
+
+```
+python $BASE_DIR/software/ext_diricore/5_psites_plot.py 22276 all_unique
+```
+
+or 
+
+```
+python $BASE_DIR/software/ext_diricore/5_psites_plot.py 22276 all_unique tpm
+```
+
+RPKM: 
+
+```
+python $BASE_DIR/software/ext_diricore/5_psites_plot.py 22276 all_unique rpkm
+```
+
+### Plot psites per contrast
+
+TPM: 
+
+```
+python $BASE_DIR/software/ext_diricore/5_psites_plot_contrasts.py 22276 all_unique
+```
+
+RPKM: 
+
+```
+python $BASE_DIR/software/ext_diricore/5_psites_plot_contrasts.py 22276 all_unique rpkm
+``` 
+
+### Plot reads per frame
+
+```
+module load R/3.6.2 && module load gcc/7.2.0 && Rscript $BASE_DIR/software/ext_diricore/5_plot_reads_per_frame.r 22276 all_unique
+```
+
+### Web-site results
+
+upload to the web-site: `python $BASE_DIR/software/project_list.py psites 22276 all_unique --remote` 
 
