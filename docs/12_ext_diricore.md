@@ -49,7 +49,7 @@ scp -r USERNAME@odcf-cn34u03s10:BASE_DIR/22276/analysis/output/figures/p_offsets
 
 The plot will look like that:
 
-![](pics/plastid.png) 
+![](/pics/plastid.png) 
 
 ## 4. Manually re-format offset files
 
@@ -131,7 +131,7 @@ Output dir2: `$BASE_DIR/22276/analysis/output/ext_diricore/all_unique/psites_dot
 The psite counts have been calculated with 3 types of normalization: CPM, TPM and RPKM. We can choose which normalization we use in the plots (tpm is default)
 
 
-### Plot psites per sample 
+### Plot p-sites, a-sites and e-sites per sample 
 
 TPM:
 
@@ -151,7 +151,17 @@ RPKM:
 python $BASE_DIR/software/ext_diricore/5_psites_plot.py 22276 all_unique rpkm
 ```
 
-### Plot psites per contrast
+This will produce 2 types of plots - grouped by codon and grouped by amino acid
+
+Grouped by amino acid:
+
+![](/pics/ext_diricore_1.png)
+
+Grouped by codon:
+
+![](/pics/ext_diricore_2.png)
+
+### Plot p-sites, a-sites and e-sites per contrast
 
 TPM: 
 
@@ -165,13 +175,27 @@ RPKM:
 python $BASE_DIR/software/ext_diricore/5_psites_plot_contrasts.py 22276 all_unique rpkm
 ``` 
 
+Grouped by amino acid:
+
+![](/pics/ext_diricore_3.png)
+
+Grouped by codon:
+
+![](/pics/ext_diricore_4.png)
+
+
 ### Plot reads per frame
 
 ```
 module load R/3.6.2 && module load gcc/7.2.0 && Rscript $BASE_DIR/software/ext_diricore/5_plot_reads_per_frame.r 22276 all_unique
 ```
 
+¡[](/pics/ext_diricore_5.png)
+
 ### Web-site results
 
-upload to the web-site: `python $BASE_DIR/software/project_list.py psites 22276 all_unique --remote` 
+Upload to the web-site: `python $BASE_DIR/software/project_list.py psites 22276 all_unique --remote` 
 
+See the results: http://b250-bioinfo:5000/psite_plot/22276
+
+![](/pics/ext_diricore_6.png)
