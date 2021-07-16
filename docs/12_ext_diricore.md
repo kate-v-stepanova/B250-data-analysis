@@ -1,10 +1,15 @@
 # Ext Diricore (P-site signalling)
 
-> **_IMPORTANT:_** This step requires [plastid](https://plastid.readthedocs.io/en/latest/). To install, run the command: `source activate p3 && pip install plastid` 
+> **_IMPORTANT:_** This step requires [plastid](https://plastid.readthedocs.io/en/latest/). To install, run the command: `pip install plastid` 
 
 ## 0. Set up plastid
 
-Install plastid: `pip install plastid`
+Install plastid: 
+
+```
+source activate p3
+pip install plastid
+```
 
 
 Create reference for human (for mouse it's the same, just take the annotation for mouse - replace `hg19` with `mm10`): 
