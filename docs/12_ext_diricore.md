@@ -129,6 +129,7 @@ bsub -q long -R "rusage[mem=20G]" python $BASE_DIR/software/ext_diricore/5_psite
 ```
 
 Output dir1: `$BASE_DIR/22276/analysis/output/ext_diricore/all_unique/psites`
+
 Output dir2: `$BASE_DIR/22276/analysis/output/ext_diricore/all_unique/psites_dotplot`
 
 ## 7. Plot results
