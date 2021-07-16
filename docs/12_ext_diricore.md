@@ -205,3 +205,72 @@ Upload to the web-site: `python $BASE_DIR/software/project_list.py psites 22276 
 See the results: http://b250-bioinfo:5000/psite_plot/22276
 
 ![](/pics/ext_diricore_6.png)
+
+
+# Ext diricore for a subset of genes
+
+Let's say we want to perform this analysis only on mitochondrial genes.
+
+## 1. Get sequences from bam: 
+
+```
+bsub -R "rusage[mem=10G]" $BASE_DIR/software/ext_diricore/1_get_seq_from_bam.sh 22276 all_unique $BASE_DIR/static/hg19/MT-transcripts.txt
+mv $BASE_DIR/22276/analysis/output/ext_diricore/all_unique_MT-transcripts $BASE_DIR/22276/analysis/output/ext_diricore/all_unique_MT-genes
+```
+
+The output will be: `$BASE_DIR/22276/analysis/output/ext_diricore/all_unique_MT-genes/tsv/`
+
+## 2. Create bam files with MT-genes only
+
+1. Get seq IDs from transcriptome bams
+```
+mkdir -p $BASE_DIR/22276/analysis/output/diricore_subset/bam_ids/all_unique-MT-genes/
+for f in $(ls $BASE_DIR/22276/analysis/output/alignments/toTranscriptome/*_toTranscriptome.bam); 
+   do fn=$(basename $f); 
+   fn=${fn%_toTranscriptome.bam}; 
+   echo "samtools view $f | fgrep -w -f $BASE_DIR/static/hg19/MT-transcripts.txt | cut -f 1 > $BASE_DIR/22276/analysis/output/diricore_subset/bam_ids/all_unique-MT-genes/${fn}.txt"; done
+```
+
+2. Create sam headers 
+
+```
+mkdir -p $BASE_DIR/22276/analysis/output/diricore_subset/all_unique_MT-genes/sam/`
+for f in $(ls $BASE_DIR/22276/analysis/output/diricore_subset/bam_ids/all_unique_MT-genes/*txt); 
+  do fn=$(basename $f); 
+  fn=${fn%.txt}; 
+  echo "samtools view -H $BASE_DIR/22276/analysis/output/alignments/toGenome/${fn}_toGenome_dedup.bam > $BASE_DIR/22276/analysis/output/diricore_subset/all_unique_MT-genes/sam/${fn}.sam"; 
+done
+```
+
+3. Extract reads from genome bams: 
+
+```
+for f in $(ls $BASE_DIR/22276/analysis/output/diricore_subset/bam_ids/all_unique_MT-genes/*txt); 
+    do fn=$(basename $f); 
+    fn=${fn%.txt}; 
+    echo "samtools view $BASE_DIR/22276/analysis/output/alignments/toGenome/${fn}_toGenome.bam | fgrep -w -f $f >>   $BASE_DIR/22276/analysis/output/diricore_subset/all_unique_MT-genes/sam/${fn}.sam"; 
+done
+```
+
+4. Convert sam to bam:
+
+```
+mkdir -p $BASE_DIR/22276/analysis/output/diricore_subset/all_unique_MT-genes/alignments/toGenome/
+
+for f in $(ls $BASE_DIR/22276/analysis/output/diricore_subset/all_unique_MT-genes/sam/*.sam); 
+    do fn=$(basename $f); 
+    fn=${fn%.sam}; 
+    echo "samtools view -b $f > $BASE_DIR/22276/analysis/output/diricore_subset/all_unique_MT-genes/alignments/toGenome/${fn}_toGenome.bam"; 
+done
+```
+
+## Psite analysis
+
+From here just perform the steps from the original `Ext diricore` [analysis](/docs/12_ext_diricore.md)
+
+After that, all intermediate files can be removed:
+
+```
+rm -rf $BASE_DIR/22276/analysis/output/diricore_subset/all_unique_MT-genes/
+rm -rf $BASE_DIR/22276/analysis/output/diricore_subset/bam_ids/all_unique-MT-genes/
+```
