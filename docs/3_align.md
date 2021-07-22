@@ -57,7 +57,7 @@ STAR outputs 2 types of bam files into the following directories:
 
 After the alignment is done, let's get rid of the duplicated reads (PCR artifacts)
 
-1. Deduplicate genome: `$BASE_DIR/software/preprocessing/3_align/2_deduplicate_umi.sh 20910 all`
+1. Deduplicate genome: `$BASE_DIR/software/preprocessing/3_alignment/2_deduplicate_umi.sh 20910 all`
 
 This will output the following: 
 
@@ -80,7 +80,7 @@ bsub -q long -R "rusage[mem=10G]" /icgc/dkfzlsdf/analysis/OE0532/tmp/20910/dedup
 
 Just copy & paste these commands to submit the jobs to the cluster.
 
-2. Deduplicate transcriptome: `$BASE_DIR/software/preprocessing/3_align/2_deduplicate_umi.sh 20910 all --trans`
+2. Deduplicate transcriptome: `$BASE_DIR/software/preprocessing/3_alignment/2_deduplicate_umi.sh 20910 all --trans`
 
 These will output the following: 
 
