@@ -157,7 +157,7 @@ python $BASE_DIR/software/preprocessing/stats/get_alignment_stats_2.py 20910
 3. Plot alignment stats
 
 ```
-module load gcc/7.2.0 && module load R/3.5.1 && Rscript $BASE_DIR/software/preprocessing/stats/plot_star_alignment_stats.r 20910
+module load gcc/7.2.0 && module load R/3.6.2 && Rscript $BASE_DIR/software/preprocessing/stats/plot_star_alignment_stats.r 20910
 ```
 
 The alignments plot looks like that: 
