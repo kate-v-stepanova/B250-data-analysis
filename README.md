@@ -38,7 +38,7 @@ This is a step-by-step tutorial for analysing the Ribosome-Profiling (and other)
 
 12. [Read size distribution](docs/11_size_distribution.md)
 
-13. [Cumulative plots](doc/13_cumulative_plots.md)
+13. [Cumulative plots](docs/13_cumulative_plots.md)
 
 
 ...
