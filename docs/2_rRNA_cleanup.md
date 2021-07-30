@@ -37,12 +37,10 @@ The script will output files here: `ls -lh $BASE_DIR/20910/analysis/output/fastq
 
 ## 2. Align with blat
 
-Create an output dir for the next step: `mkdir -p $BASE_DIR/20910/analysis/output/rrna/blat_results`
-
 Align with [blat](https://genome.ucsc.edu/goldenpath/help/blatSpec.html): 
 
 ```
-for f in $(ls $BASE_DIR/20910/analysis/output/fastq_to_fasta/*.fa); do fn=$(basename $f); fn=${fn%.fa}; echo "bsub -q long -R \"rusage[mem=50G]\" $BASE_DIR/software/bin/blat_for_linux -stepSize=5 -repMatch=4096 -minScore=0 -minIdentity=0 $BASE_DIR/static/mm9/rRNA_genes.2bit $f $BASE_DIR/20910/analysis/output/rrna/blat_results/${fn}.psl"; done
+$BASE_DIR/software/preprocessing/2_rrna/2_align_with_blat.sh 20910 mm9
 ```
 
 This step requires reference files. How to create these reference files, is described here: [Blat rRNA reference](docs/rrna_blat_reference.md)
