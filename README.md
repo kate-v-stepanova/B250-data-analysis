@@ -11,6 +11,8 @@ This is a step-by-step tutorial for analysing the Ribosome-Profiling (and other)
 
 4. [Alignment](docs/3_align.md)
 
+5. [SRA Datasets](docs/14_sra.md)
+
 ## Common analysis
 
 5. [UCSC link](docs/4_ucsc_link.md)
@@ -31,7 +33,7 @@ This is a step-by-step tutorial for analysing the Ribosome-Profiling (and other)
 
 12. [Ext Diricore (P-site signalling)](docs/12_ext_diricore.md)
 
-13. [SRA Datasets](docs/14_sra.md)
+13. 
 
 
 ## Simple data extraction / simpe plots
