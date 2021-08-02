@@ -53,6 +53,14 @@ Perform the analysis as described above.
 
 Becase a few codons are different in cytosolic genes and MT-genes, there are 2 subsequence scripts. They output the same data files, but the plotting function is different due to the codons annotation. 
 
-Subsequence plots for the cytosolic genes should be plotted with this command: `bsub -q long -R "rusage[mem=20G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore_subset/subsequence_analysis_MT.sh 18436 hg19 5 all_MT-genes`
+## Subsequence plots for the cytosolic genes: 
 
-Subsequence plots for the mitochondiral genes should be plotted with this command: `bsub -q long -R "rusage[mem=20G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore_subset/subsequence_analysis.sh 18436 hg19 5 all_excl_MT-genes`
+```
+bsub -q long -R "rusage[mem=20G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore_subset/subsequence_analysis.sh 18436 hg19 5 all_MT-genes
+```
+
+## Subsequence plots for the mitochondiral genes: 
+
+```
+bsub -q long -R "rusage[mem=20G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore_subset/subsequence_analysis_MT.sh 18436 hg19 5 all_excl_MT-genes
+```
