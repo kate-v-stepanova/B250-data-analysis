@@ -58,7 +58,7 @@ bsub -R "rusage[mem=10G]" $BASE_DIR/software/diricore_subset/1_get_seq_from_bam.
 
 Sometimes we are interested in a combination of codons from different amino acids.
 
-For example, we want to find the combination of 2 codons of Asparatic acid and Proline: `asp_asp_pro`.
+For example, we want to find the combination of 2 codons of Asparatic acid and 1 codon of Proline: `asp_asp_pro`.
 
 In this case reference files are also required
 
