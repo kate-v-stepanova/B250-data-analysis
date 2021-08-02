@@ -33,16 +33,16 @@ This is a step-by-step tutorial for analysing the Ribosome-Profiling (and other)
 
 12. [Ext Diricore (P-site signalling)](docs/12_ext_diricore.md)
 
-13. 
+13. [RPF Coverage (1x, 2x, 3x codons)](docs/15_rpf_coverage.md)
 
 
 ## Simple data extraction / simpe plots
 
-11. [Normalized counts](docs/9_normalized_counts.md)
+14. [Normalized counts](docs/9_normalized_counts.md)
 
-12. [Read size distribution](docs/11_size_distribution.md)
+15. [Read size distribution](docs/11_size_distribution.md)
 
-13. [Cumulative plots](docs/13_cumulative_plots.md)
+16. [Cumulative plots](docs/13_cumulative_plots.md)
 
 
 ...
