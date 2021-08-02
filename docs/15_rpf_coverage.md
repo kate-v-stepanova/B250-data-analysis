@@ -36,7 +36,7 @@ where `ENST00000379370.2` is a transcript_id, `GATGAC` is a codon, and `2568` is
 To generate the reference files, run the following command:
 
 ```
-bsub -R "rusage[mem=100G]" python $BASE_DIR/software/ext_diricore/triplets/get_codon_positions.py 2 hg19
+bsub -R "rusage[mem=100G]" python $BASE_DIR/software/ext_diricore/triplets/0_get_codon_positions.py 2 hg19
 ```
 
 This will generate reference files for 2x codons in all amino acids.
