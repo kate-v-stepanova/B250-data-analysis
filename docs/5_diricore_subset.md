@@ -48,3 +48,11 @@ Extract reads from bam: `$BASE_DIR/software/diricore_subset/1_extract_bam.sh 222
 New bam files will be written to: `$BASE_DIR/22276/analysis/output/diricore_subset/all_unique_excl_MT-transcripts/alignments/toGenome`
 
 Perform the analysis as described above.
+
+# Difference between MT and cytosolic genes in subsequence analysis
+
+Becase a few codons are different in cytosolic genes and MT-genes
+
+Subsequence plots for the cytosolic genes should be plotted with this command: `bsub -q long -R "rusage[mem=20G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore_subset/subsequence_analysis_MT.sh 18436 hg19 5 all_MT-genes`
+
+Subsequence plots for the mitochondiral genes should be plotted with this command: `bsub -q long -R "rusage[mem=20G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore_subset/subsequence_analysis.sh 18436 hg19 5 all_excl_MT-genes`
