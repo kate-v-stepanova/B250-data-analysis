@@ -5,7 +5,9 @@ Binary should be located here: `$BASE_DIR/software/bin/sratoolkit_fastq_dump`
 
 ## Software
 
-compiled CentOS (May 7, 2019): https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.9.6-1/sratoolkit.2.9.6-1-centos_linux64.tar.gz
+Installation on the cluster has already been done. 
+
+Download this version `compiled CentOS (May 7, 2019)`: https://ftp-trace.ncbi.nlm.nih.gov/sra/sdk/2.9.6-1/sratoolkit.2.9.6-1-centos_linux64.tar.gz
 
 Installation guide: https://trace.ncbi.nlm.nih.gov/Traces/sra/sra.cgi?view=software
 
