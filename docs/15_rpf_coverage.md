@@ -60,7 +60,26 @@ Sometimes we are interested in a combination of codons from different amino acid
 
 For example, we want to find the combination of 2 codons of Asparatic acid and 1 codon of Proline: `asp_asp_pro`.
 
-In this case reference files are also required
+It means, that we are interested in the following 16 codons: 
+
+```
+GATGACCCA
+GATGACCCC
+GATGACCCG
+GATGACCCT
+GACGATCCA
+GACGATCCC
+GACGATCCG
+GACGATCCT
+GACGACCCA
+GACGACCCC
+GACGACCCG
+GACGACCCT
+GATGATCCA
+GATGATCCC
+GATGATCCG
+GATGATCCT
+```
 
 ## 0. Generate reference file
 
