@@ -31,7 +31,7 @@ ENST00000378638.2       GATGAC  12
 
 where `ENST00000379370.2` is a transcript_id, `GATGAC` is a codon, and `2568` is a coordinate (0-based) of this codon in CDS of the transcript. 
 
-## 0. Generate reference files
+## 0. Generate reference files - already done
 
 To generate the reference files, run the following command:
 
