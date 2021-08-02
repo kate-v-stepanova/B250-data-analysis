@@ -60,3 +60,13 @@ Sometimes we are interested in a combination of codons from different amino acid
 
 For example, we want to find the combination of 2 codons of Asparatic acid and Proline: `asp_asp_pro`.
 
+In this case reference files are also required
+
+## 0. Generate reference file
+
+```
+python $BASE_DIR/software/ext_diricore/triplets/0_get_codon_positions_aa_combination.py asp_asp_pro hg19
+```
+
+This will create the following file: `$BASE_DIR/static/hg19/codons/3x/aa_combinations/asp_asp_pro.tsv`
+
