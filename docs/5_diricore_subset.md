@@ -27,17 +27,17 @@ New bam files will be written to: `$BASE_DIR/22276/analysis/output/diricore_subs
 
 3. Run rpf density analysis: 
 ```
-bsub -q long -R "rusage[mem=20G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore_subset/rpf_density_analysis.sh 18436 hg19 5 all_MT-genes
+bsub -q long -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/rpf_density_analysis.sh 18436 hg19 5 all_MT-genes
 ```
 
 4. Subsequence analysis:
 ```
-bsub -q long -R "rusage[mem=20G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore_subset/subsequence_analysis.sh 18436 hg19 5 all_MT-genes
+bsub -q long -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/subsequence_analysis.sh 18436 hg19 5 all_MT-genes
 ```
 
 5. RPF transcript distribution:
 
-`bsub -q long  -R "rusage[mem=20G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore_subset/plot_rpf_transcript_distribution.sh 18436 hg19 5 all_MT-genes`
+`bsub -q long  -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/plot_rpf_transcript_distribution.sh 18436 hg19 5 all_MT-genes`
 
 # Diricore EXCLUDING subset of genes
 
