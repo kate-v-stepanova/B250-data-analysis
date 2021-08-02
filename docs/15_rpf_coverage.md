@@ -29,8 +29,21 @@ ENST00000356200.3       GATGAC  12
 ENST00000378638.2       GATGAC  12
 ```
 
-where `ENST00000379370.2` is a transcript_id, `GATGAC` is a codon, and `2568` is a coordinate (0-based) this codon in CDS of the transcript. 
+where `ENST00000379370.2` is a transcript_id, `GATGAC` is a codon, and `2568` is a coordinate (0-based) of this codon in CDS of the transcript. 
 
+## 0. Generate reference files
+
+To generate the reference files, run the following command:
+
+```
+python $BASE_DIR/software/ext_diricore/triplets/get_codon_positions.py 2 hg19
+```
+
+This will generate reference files for 2x codons in all amino acids.
+
+The output will be written in this directory: `$BASE_DIR/static/hg19//omics/groups/OE0532/internal/from_snapshot/static/hg19/codons/2x`
+
+For 1x and 3x codons, adjust the first parameter, `1` or `3` instead of `2`. For a different genome, adjust the second parameter, e.g. `mm10` instead of `hg19`
 
 ## 1. Get sequences from bam
 
@@ -39,3 +52,11 @@ bsub -R "rusage[mem=10G]" $BASE_DIR/software/diricore_subset/1_get_seq_from_bam.
 ```
 
 ## 2. 
+
+
+# RPF coverage plots for combination of amino acids
+
+Sometimes we are interested in a combination of codons from different amino acids.
+
+For example, we want to find the combination of 2 codons of Asparatic acid and Proline: `asp_asp_pro`.
+
