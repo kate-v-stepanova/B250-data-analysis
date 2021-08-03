@@ -51,7 +51,11 @@ For 1x and 3x codons, adjust the first parameter, `1` or `3` instead of `2`. For
 bsub -R "rusage[mem=10G]" $BASE_DIR/software/diricore_subset/1_get_seq_from_bam.sh 17245 all_unique
 ```
 
-## 2. 
+## 2. Get plots
+
+```
+python $BASE_DIR/software/ext_diricore/rpf_coverage/4_rpf_coverage_aa_combination.py 17245 all_unique asp 60 1 all_genes all_genes
+```
 
 
 # RPF coverage plots for combination of amino acids
