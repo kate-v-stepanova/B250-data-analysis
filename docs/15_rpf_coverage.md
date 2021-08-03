@@ -89,3 +89,28 @@ python $BASE_DIR/software/ext_diricore/triplets/0_get_codon_positions_aa_combina
 
 This will create the following file: `$BASE_DIR/static/hg19/codons/3x/aa_combinations/asp_asp_pro.tsv`
 
+## 1. Get sequences from bam
+
+```
+bsub -R "rusage[mem=10G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore_subset/1_get_seq_from_bam.sh 17245 all_unique
+```
+
+## 2. Get plots
+
+```
+python $BASE_DIR/software/ext_diricore/rpf_coverage/4_rpf_coverage_aa_combination.py 17245 all_unique asp_asp_pro 100 all_genes all_genes
+```
+
+Parameters:
+
+`17245` - project_id
+
+`all_unique` - bam_type (all/all_unique)
+
+`asp_asp_pro` - combination of amino acids
+
+`100` - window size
+
+`all_genes` - we include all genes in the analysis (can be also a file - e.g. `/path/to/list/of/genes.txt`, or a single gene name - e.g. `GAPDH`)
+
+`all_genes` - subset_name (subdir, where the results will be written)
