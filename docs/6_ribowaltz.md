@@ -46,9 +46,8 @@ Rscript $BASE_DIR/software/diricore/periodicity.r 20910 mm10 all_unique
 
 ## 4. RiboWaltz stats
 
-Create ribowaltz_stats file:  `vim $BASE_DIR/20910/analysis/output/periodicity/all_unique/ribowaltz_stats.tsv`
+Open the ribowaltz_stats file:  `vim $BASE_DIR/20910/analysis/output/periodicity/all_unique/ribowaltz_stats.tsv`
 
-copy & paste output of `bamtolist` function.
 Do the following vim commands:
 
 ```
