@@ -44,6 +44,7 @@ This is a step-by-step tutorial for analysing the Ribosome-Profiling (and other)
 
 16. [Cumulative plots](docs/13_cumulative_plots.md)
 
+17. [PCA plot](docs/16_pca.md)
 
 ...
 
