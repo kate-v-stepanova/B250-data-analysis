@@ -9,7 +9,7 @@
 ## 1. Create UCSC tracks
 
 ```
-$BASE_DIR/ucsc/1_generate_ucsc_tracks.sh 21012 mm10 all_unique
+$BASE_DIR/software/ucsc/1_generate_ucsc_tracks.sh 21012 mm10 all_unique
 ```
 
 This will output the following:
