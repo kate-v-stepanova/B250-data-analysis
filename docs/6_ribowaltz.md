@@ -41,7 +41,7 @@ done
 ```
 module load gcc/7.2.0
 module load R/3.6.2
-Rscript $BASE_DIR/software/simple_scriptsperiodicity.r 20910 mm10 all_unique
+Rscript $BASE_DIR/software/simple_scripts/periodicity.r 20910 mm10 all_unique
 ```
 
 ## 4. RiboWaltz stats
