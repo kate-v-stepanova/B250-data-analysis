@@ -24,7 +24,7 @@ $BASE_DIR/22276/analysis/output/alignments/toTranscriptome
 ## 1. Create input dir
 
 ```
-mkdir -p $BASE_SIE/22276/analysis/input/periodicity_bam/all_unique/
+mkdir -p $BASE_DIR/22276/analysis/input/periodicity_bam/all_unique/
 ```
 ## 2. Create symlinks
 
