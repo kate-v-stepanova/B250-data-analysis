@@ -55,7 +55,7 @@ bsub -q long  -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/plot_rpf_t
 
 Let's say we want to exclude mitochondial genes from the analysis.
 
-Extract reads from bam: `$BASE_DIR/software/diricore_subset/1_extract_bam.sh 22276 all_unique $BASE_DIR/static/hg19/MT-transcripts.txt`
+Extract reads from bam: `$BASE_DIR/software/diricore_subset/1_extract_bam.sh 22276 all_unique $BASE_DIR/static/hg19/MT-transcripts.txt exclude`
 
 New bam files will be written to: `$BASE_DIR/22276/analysis/output/diricore_subset/all_unique_excl_MT-transcripts/alignments/toGenome`
 
