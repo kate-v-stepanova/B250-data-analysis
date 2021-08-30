@@ -68,11 +68,11 @@ Becase a few codons are different in cytosolic genes and MT-genes, there are 2 s
 ## Subsequence plots for the cytosolic genes: 
 
 ```
-bsub -q long -R "rusage[mem=20G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore_subset/subsequence_analysis.sh 18436 hg19 5 all_MT-genes
+bsub -q long -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/subsequence_analysis.sh 18436 hg19 5 all_MT-genes
 ```
 
 ## Subsequence plots for the mitochondiral genes: 
 
 ```
-bsub -q long -R "rusage[mem=20G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore_subset/subsequence_analysis_MT.sh 18436 hg19 5 all_excl_MT-genes
+bsub -q long -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/subsequence_analysis_MT.sh 18436 hg19 5 all_excl_MT-genes
 ```
