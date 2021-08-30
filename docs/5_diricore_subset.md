@@ -19,25 +19,37 @@ MT-ND6
 ```
 
 
-1. Create a reference file: `cat $BASE_DIR/static/hg19/MT-genes.txt | cut -d '|' -f 1 > $BASE_DIR/static/hg19/MT-transcripts.txt`
+## 1. Create a reference file: 
 
-2. Extract reads from bam: `$BASE_DIR/software/diricore_subset/1_extract_bam.sh 22276 all_unique $BASE_DIR/static/hg19/MT-transcripts.txt`
+```
+cat $BASE_DIR/static/hg19/MT-genes.txt | cut -d '|' -f 1 > $BASE_DIR/static/hg19/MT-transcripts.txt
+```
+
+## 2. Extract reads from bam: 
+
+```
+$BASE_DIR/software/diricore_subset/1_extract_bam.sh 22276 all_unique $BASE_DIR/static/hg19/MT-transcripts.txt
+```
 
 New bam files will be written to: `$BASE_DIR/22276/analysis/output/diricore_subset/all_unique_MT-transcripts/alignments/toGenome`
 
-3. Run rpf density analysis: 
+## 3. Run rpf density analysis: 
+
 ```
 bsub -q long -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/rpf_density_analysis.sh 18436 hg19 5 all_MT-genes
 ```
 
-4. Subsequence analysis:
+## 4. Subsequence analysis:
+
 ```
 bsub -q long -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/subsequence_analysis.sh 18436 hg19 5 all_MT-genes
 ```
 
-5. RPF transcript distribution:
+## 5. RPF transcript distribution:
 
-`bsub -q long  -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/plot_rpf_transcript_distribution.sh 18436 hg19 5 all_MT-genes`
+```
+bsub -q long  -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/plot_rpf_transcript_distribution.sh 18436 hg19 5 all_MT-genes
+```
 
 # Diricore EXCLUDING subset of genes
 
