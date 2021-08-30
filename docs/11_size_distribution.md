@@ -57,11 +57,23 @@ This list can contain either gene names (e.g. `MT-ND1`), gene ids (`ENSG00000198
 Get size distribution for MT-genes: 
 
 ```
-python $BASE_DIR/software/counts/4_size_distribution.py 21221 all_unique hg19 $BASE_DIR/21221/analysis/input/metadata/MT-genes.txt`
-````
+python $BASE_DIR/software/counts/4_size_distribution.py 21221 all_unique hg19 $BASE_DIR/21221/analysis/input/metadata/MT-genes.txt
+```
 
 Output dir: `$BASE_DIR/21221/analysis/output/figures/size_dist/all_unique/MT-genes/`
 
 Example of the plot: 
 
 ![](/pics/size_distribution.png)
+
+## 4. Get size distribution excluding a given subset of genes
+
+Let's say, we want to get size distribution only for cytosolic genes (all genes excluding mitochondrial genes).
+
+We have a list of mitocchondrial genes here: `$BASE_DIR/21221/analysis/input/metadata/MT-genes.txt`
+
+Let's get the size distribution:
+
+```
+python $BASE_DIR/software/counts/4_size_distribution.py 21221 all_unique hg19 $BASE_DIR/21221/analysis/input/metadata/MT-genes.txt exclude
+```
