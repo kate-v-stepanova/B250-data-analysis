@@ -79,4 +79,18 @@ Copy & paste to submit jobs to the cluster.
 
 This will convert `.sra` to `.fastq.gz` and the files will be written here: `$BASE_DIR/SRA_dataset/analysis/output/demultiplexed`
 
-Then preprocess the `.fastq` files as usually.
+## Trimming adapter
+
+Usually these datasets have a different adapter sequence, e.g. `TCGTATGCCGTCTTCTGCTTGAA` (this information can usually be found in the description of the dataset)
+
+This adapter can be trimmed as following:
+
+```
+$BASE_DIR/software/preprocessing/1_trim_any_adapter.sh GSE48933 TCGTATGCCGTCTTCTGCTTGAA 25
+```
+
+This will remove adapter from the reads and will output the results to the `trimmed` directory: `/omics/groups/OE0532/internal/from_snapshot//mito_riboseq/analysis/output/trimmed` 
+
+Additionally, symlinks will be created in the directory: `/omics/groups/OE0532/internal/from_snapshot//mito_riboseq/analysis/input/fastq` 
+
+From this step, the further preprocessing should be performed as usually (rRNA cleanup, alignment, etc)
