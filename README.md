@@ -35,7 +35,7 @@ This is a step-by-step tutorial for analysing the Ribosome-Profiling (and other)
 
 13. [RPF Coverage (1x, 2x, 3x codons)](docs/15_rpf_coverage.md)
 
-14. [RPF Coverage metaplot](docs/16_rpf_coverage_metaplot.md)
+14. [RPF Coverage metaplot](docs/17_rpf_coverage_metaplot.md)
 
 
 ## Simple data extraction / simpe plots
