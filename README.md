@@ -35,16 +35,18 @@ This is a step-by-step tutorial for analysing the Ribosome-Profiling (and other)
 
 13. [RPF Coverage (1x, 2x, 3x codons)](docs/15_rpf_coverage.md)
 
+14. [RPF Coverage metaplot](docs/16_rpf_coverage_metaplot.md)
+
 
 ## Simple data extraction / simpe plots
 
-14. [Normalized counts](docs/9_normalized_counts.md)
+15. [Normalized counts](docs/9_normalized_counts.md)
 
-15. [Read size distribution](docs/11_size_distribution.md)
+16. [Read size distribution](docs/11_size_distribution.md)
 
-16. [Cumulative plots](docs/13_cumulative_plots.md)
+17. [Cumulative plots](docs/13_cumulative_plots.md)
 
-17. [PCA plot](docs/16_pca.md)
+18. [PCA plot](docs/16_pca.md)
 
 ...
 
