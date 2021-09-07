@@ -18,7 +18,7 @@ Output dir: `BASE_DIR/21221/analysis/output/ext_diricore/all_unique/tsv/`
 ## 2. Get size distribution
 
 ```
-`python $BASE_DIR/software/counts/4_size_distribution.py 21221 all_unique hg19
+bsub -q long  -R "rusage[mem=50G]" python $BASE_DIR/software/counts/4_size_distribution.py 21221 all_unique hg19
 ```
 
 `21221` - dataset_id
