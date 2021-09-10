@@ -38,6 +38,8 @@ for f in $(ls $BASE_DIR/22276/analysis/output/alignments/toGenome/*_toGenome_ded
 
 ## 3. Calculate offsets by plastid 
 
+Create output directory: `mkdir -p $BASE_DIR/22276/analysis/output/plastid/p_offsets/all_unique/`
+
 ```
 for f in $(ls $BASE_DIR/22276/analysis/output/alignments/toGenome/*_dedup.bam); do fn=$(basename $f); fn=${fn%_toGenome_dedup.bam};  echo "bsub -q medium  -R "rusage[mem=10G]" psite $BASE_DIR/static/hg19/plastid_rois.txt  $BASE_DIR/22276/analysis/output/plastid/p_offsets/all_unique/$fn --min_length 25 --max_length 35 --require_upstream --count_files $f --title "$fn""; done
 ``` 
