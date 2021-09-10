@@ -21,27 +21,26 @@ If alignment is performed as described [here](/docs/5_align.md), these bam files
 $BASE_DIR/22276/analysis/output/alignments/toTranscriptome
 ```
 
-## 1. Create input dir
+## 1. Create symlinks
 
 ```
-mkdir -p $BASE_DIR/22276/analysis/input/periodicity_bam/all_unique/
+/omics/groups/OE0532/internal/from_snapshot/software/ribo_waltz/1_create_symlinks.sh 20910 all_unique
 ```
-## 2. Create symlinks
+
+This will create symlinks to the bam files in the following directory:
 
 ```
-for f in $(ls $BASE_DIR/22276/analysis/output/alignments/toTranscriptome/*_toTranscriptome_dedup.bam); 
-    do fn=$(basename $f); 
-    fn=${fn%_toTranscriptome_dedup.bam}.bam; 
-    echo "ln -s $f $BASE_DIR/22276/analysis/input/periodicity_bam/all_unique/$fn"; 
-done
+$BASE_DIR/20910/analysis/input/periodicity_bam/all_unique
 ```
+
+This needs to be done, because RiboWaltz reads the whole directory, not a single bam file.
 
 ## 3. Run RiboWaltz
 
 ```
 module load gcc/7.2.0
 module load R/3.6.2
-Rscript $BASE_DIR/software/simple_scripts/periodicity.r 20910 mm10 all_unique
+Rscript $BASE_DIR/software/ribo_waltz/2_periodicity.r 20910 mm10 all_unique
 ```
 
 ## 4. RiboWaltz stats
@@ -67,3 +66,45 @@ Do the following vim commands:
 ```
 
 Add header: `sample  input_reads not_in_annotation   negative_strand output_reads   cds_reads   inframe_reads`
+
+
+# Ribowaltz for a subset of samples
+
+It can happen that the dataset has 2 pools, and we want to analyse each pool independently. 
+
+Let's take the dataset 23108. We have 2 pools - p24_GFP and p25_HA
+
+##  1. Create symlinks for a subset of samples
+
+**Let's create symlinks for both subsets:**
+
+```
+$BASE_DIR/software/ribo_waltz/1_create_symlinks.sh 23108 all_unique p24_GFP
+$BASE_DIR/software/ribo_waltz/1_create_symlinks.sh 23108 all_unique p25_HA
+```
+
+This step requires `rpf_density_samplenames` files in the `analysis/input/metadata` directory (see diricore analysis). In our case we need those 2 files:
+
+```
+$BASE_DIR/23108/analysis/input/metadata/rpf_density_samplenames_p24_GFP.tsv
+$BASE_DIR/23108/analysis/input/metadata/rpf_density_samplenames_p25_HA.tsv
+```
+
+The script will check both files and will create symlinks in the following directories:
+
+```
+$BASE_DIR/23108/analysis/input/periodicity_bam/all_unique_p24_GFP
+$BASE_DIR/23108/analysis/input/periodicity_bam/all_unique_p25_HA
+```
+
+With this, we can run RiboWaltz
+
+## 2. Run RiboWaltz
+
+
+```
+module load gcc/7.2.0
+module load R/3.6.2
+Rscript $BASE_DIR/software/ribo_waltz/2_periodicity.r 23108 hg19 all_unique_p24_GFP
+Rscript $BASE_DIR/software/ribo_waltz/2_periodicity.r 23108 hg19 all_unique_p25_HA
+```
