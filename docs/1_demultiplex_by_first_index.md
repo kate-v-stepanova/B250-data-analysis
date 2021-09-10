@@ -27,12 +27,16 @@ For this we use cutadapt. Yes, we treat our barcodes as adapter sequences. Cutad
 
 The script requires 2 parameters:
 
-1. `project_id`, which is 23108
-2. `path_to_fastq_file`
+1. `project_id`, which is `23108`
+2. `path_to_fastq_file`, which in our case is `$BASE_DIR/23108/210907_VH00211_102_AAAM75GM5/AS-691001-LR-58000/fastq/AS-691001-LR-58000_R1.fastq.gz`
 
 The .fastq file is usually located in the project directory, in the directory which is named as a run_id. For each dataset this name will be different, so just check what is in the dir `$BASE_DIR/$project_id`
 
-Run script: `$BASE_DIR/software/preprocessing/0_demultiplex_first_index.sh 23108 $BASE_DIR/23108/210907_VH00211_102_AAAM75GM5/AS-691001-LR-58000/fastq/AS-691001-LR-58000_R1.fastq.gz`
+**Run script**: 
+
+```
+$BASE_DIR/software/preprocessing/0_demultiplex_first_index.sh 23108 $BASE_DIR/23108/210907_VH00211_102_AAAM75GM5/AS-691001-LR-58000/fastq/AS-691001-LR-58000_R1.fastq.gz
+```
 
 This will create 2 scripts and output the following:
 
