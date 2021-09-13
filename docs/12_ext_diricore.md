@@ -30,18 +30,12 @@ Get sequences:
 bsub -R "rusage[mem=10G]" $BASE_DIR/software/ext_diricore/1_get_seq_from_bam.sh 22276 all_unique
 ```
 
-## 2. Index bam files 
+## 2. Calculate offsets by plastid 
+
+**Calculate offsets:**
 
 ```
-for f in $(ls $BASE_DIR/22276/analysis/output/alignments/toGenome/*_toGenome_dedup.bam); do echo "samtools index $f"; done
-```
-
-## 3. Calculate offsets by plastid 
-
-Create output directory: `mkdir -p $BASE_DIR/22276/analysis/output/plastid/p_offsets/all_unique/`
-
-```
-for f in $(ls $BASE_DIR/22276/analysis/output/alignments/toGenome/*_dedup.bam); do fn=$(basename $f); fn=${fn%_toGenome_dedup.bam};  echo "bsub -q medium  -R "rusage[mem=10G]" psite $BASE_DIR/static/hg19/plastid_rois.txt  $BASE_DIR/22276/analysis/output/plastid/p_offsets/all_unique/$fn --min_length 25 --max_length 35 --require_upstream --count_files $f --title "$fn""; done
+$BASE_DIR/software/ext_diricore/2_get_offset.sh 222765 all_unique hg19 pool_24
 ``` 
 
 This will calculate the offset for each read length (per sample), and create some images + data files in this directory: `$BASE_DIR/22276/analysis/output/plastid/p_offsets/`
@@ -58,29 +52,17 @@ The plot will look like that:
 
 ![](/pics/plastid.png) 
 
-## 4. Manually re-format offset files
+## 3. Re-format offset files
 
 Now we need to extract the offset and eliminate non-relevant data from the plastid output.
- 
-Create data dir: 
+
+Re-format offset files:
 
 ```
-mkdir -p $BASE_DIR/22276/analysis/output/ext_diricore/all_unique/p_offset
+$BASE_DIR/software/ext_diricore/3_reformat_offset.sh 22276 all_unique
 ```
 
-Copy data files:
-
-```
-for f in $(ls $BASE_DIR/22276/analysis/output/figures/p_offsets/all_unique/*p_offsets.txt); do echo "cp $f $BASE_DIR/22276/analysis/output/ext_diricore/all_unique/p_offset/"; done
-```
-
-Remove lines starting with `#`:
-
-```
-for f in $(ls $BASE_DIR/22276/analysis/output/ext_diricore/all_unique/p_offset/*); do echo "cat $f | grep -v '^#' | grep -v default > $f"1; echo "mv $f"1 $f; done
-```
-
-Now the offset file will look like that:
+The script will remove lines which we don't need, so that the final offset file will look like that:
 
 ```
 length  p_offset
@@ -96,6 +78,8 @@ length  p_offset
 34      15
 35      13
 ```
+
+## 4. Manually adjust offset files
 
 So we have to remove the lines which don't look that good. In this case, the final result will look like that:
 
