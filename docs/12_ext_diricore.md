@@ -35,7 +35,7 @@ bsub -R "rusage[mem=10G]" $BASE_DIR/software/ext_diricore/1_get_seq_from_bam.sh 
 **Calculate offsets:**
 
 ```
-$BASE_DIR/software/ext_diricore/2_get_offset.sh 222765 all_unique hg19 pool_24
+$BASE_DIR/software/ext_diricore/2_get_offset.sh 22276 all_unique hg19 pool_24
 ``` 
 
 This will calculate the offset for each read length (per sample), and create some images + data files in this directory: `$BASE_DIR/22276/analysis/output/plastid/p_offsets/`
