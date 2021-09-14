@@ -111,7 +111,7 @@ Output dir: `$BASE_DIR/22276/analysis/output/alignments/reads_per_gene/normalize
 ## 6. Get psites counts 
 
 ```
-bsub -q long -R "rusage[mem=20G]" python $BASE_DIR/software/ext_diricore/5_psites_counts_3.py 22276 all_unique 20 hg19
+bsub -q long -R "rusage[mem=20G]" python $BASE_DIR/software/ext_diricore/4_psites_counts.py 22276 all_unique 20 hg19
 ```
 
 Output dir1: `$BASE_DIR/22276/analysis/output/ext_diricore/all_unique/psites`
