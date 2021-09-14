@@ -12,7 +12,9 @@ So, do the following:
 
 1. Open the `.bash_profile`: `vim ~/.bash_profile`
 
-2. And add this line: `export BASE_DIR="/omics/groups/OE0532/internal/from_snapshot/"` (or any other dir, which will be used as a base dir)
+2. And add this line: `export BASE_DIR="/omics/groups/OE0532/internal/from_snapshot/YOUR_DIR"` 
+
+3. Create a symlink to access existing data: `ln -s /omics/groups/OE0532/internal/from_snapshot/* /omics/groups/OE0532/internal/from_snapshot/YOUR_DIR/`
 
 ## 2. RStudio
 
