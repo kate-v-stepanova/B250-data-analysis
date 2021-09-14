@@ -1,6 +1,6 @@
 # Demultiplexing
 
-> **_IMPORTANT:_** `$BASE_DIR` has to be specified in your `.bash_profile`. Details [here](docs/0_before_you_start.md)
+> **_IMPORTANT:_** `$BASE_DIR` has to be specified in your `.bash_profile`. Details [here](/docs/0_before_you_start.md)
 
 > **_IMPORTANT 2:_** `fastx_barcode_splitter.pl` has to be downloaded from [here](http://hannonlab.cshl.edu/fastx_toolkit/download.html) and placed into `$BASE_DIR/software/bin`
 
