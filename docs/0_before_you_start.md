@@ -14,7 +14,9 @@ So, do the following:
 
 2. And add this line: `export BASE_DIR="/omics/groups/OE0532/internal/YOUR_DIR"` 
 
-3. Create a symlink to access existing data: `ln -s /omics/groups/OE0532/internal/from_snapshot/* /omics/groups/OE0532/internal/YOUR_DIR/`
+3. Create a symlink to access static data: `ln -s /omics/groups/OE0532/internal/from_snapshot/static /omics/groups/OE0532/internal/YOUR_DIR/`
+
+4. Create a symlink for the software dir: `ln -s  /omics/groups/OE0532/internal/from_snapshot/software /omics/groups/OE0532/internal/YOUR_DIR/`
 
 ## 2. RStudio
 
