@@ -4,6 +4,10 @@
 
 > **_IMPORTANT 2:_** `fastx_barcode_splitter.pl` has to be downloaded from [here](http://hannonlab.cshl.edu/fastx_toolkit/download.html) and placed into `$BASE_DIR/software/bin`
 
+> **_IMPORTANT 3:_** [cutadapt](https://cutadapt.readthedocs.io/en/stable/) and [umi_tools](https://github.com/CGATOxford/UMI-tools) have to installed into p3 environment: 
+
+> `pip install umi_tools` and `pip install cutadapt`
+
 
 ## Download the data
 
