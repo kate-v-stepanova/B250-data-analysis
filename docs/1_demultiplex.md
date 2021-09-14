@@ -247,6 +247,7 @@ $BASE_DIR/software/preprocessing/stats/subset_cutadapt_stats.sh 20910 26
 
 ###  Plot separately for each subset
 Sometimes it is necessary to plot each subset separately in a separate plot. This can be done with the following command:
+
 ```
 module load R/3.6.2
 module load gcc/7.2.0
@@ -258,6 +259,7 @@ Rscript $BASE_DIR/software/preprocessing/stats/plot_basic_stats.r 20910 26
 Alternatively, open the RStudio: `https://odcf-rstudio01.dkfz.de/` and run the script from there. 
 
 As an output we get 3 cutadapt plots and 3 bc split plots: `ls -lh $BASE_DIR/20910/analysis/output/figures/`
+
 ```
 total 400K
 -rw-r--r--. 1 e984a B250 4.7K Feb 16 11:20 24_BCsplit_stats.pdf
@@ -269,8 +271,11 @@ total 400K
 ```
 
 ### Plot cutadapt stats (all samples in one plot)
+
 If we need to plot all samples together, we need to merge stats from all subsets into one file.
+
 Merge cutadapt stats: ` $BASE_DIR/software/preprocessing/stats/multiple_cutadapt_stats.sh 20910`
+
 Merge bc_split stats: ` $BASE_DIR/software/preprocessing/stats/multiple_bc_split_stats.sh 20910`
 
 This will create 2 files:
@@ -281,6 +286,7 @@ This will create 2 files:
 ```
 
 Now, let's create a plot: 
+
 ```
 module load R/3.6.2
 module load gcc/7.2.0
@@ -290,6 +296,7 @@ Rscript $BASE_DIR/software/preprocessing/stats/plot_basic_stats.r  20910
 Or, simply run it from the RStudio: `https://odcf-rstudio01.dkfz.de/`
 
 ### Copy data from the cluster
+
 Copy data: `scp -r  e984a@odcf-cn34u03s10:/icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/figures/* ~/analysis/20910/figures`
 
 ### The cutadapt plot
