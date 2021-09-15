@@ -41,7 +41,6 @@ pool 25 (all counts + cds counts):
 
 ```
 Rscript $BASE_DIR/software/diff_expr/1_diff_expr.r 22276 all_unique 100 hg19 pool_25
-
 Rscript $BASE_DIR/software/diff_expr/1_diff_expr.r 22276 all_unique_cds 100 hg19 pool_25
 ```
 
@@ -54,31 +53,40 @@ Rscript $BASE_DIR/software/diff_expr/1_diff_expr.r 22276 all_unique_cds 50 hg19 
 
 3. Agg contrasts into 1 file:
 
-pool_24: `python $BASE_DIR/software/diff_expr/2_diff_expr.py 22276 all_unique_pool_24 20`
+All:
 
-pool_25: `python $BASE_DIR/software/diff_expr/2_diff_expr.py 22276 all_unique_pool_25 100`
+```
+python $BASE_DIR/software/diff_expr/2_diff_expr.py 22276 all_unique 20 pool_24
+python $BASE_DIR/software/diff_expr/2_diff_expr.py 22276 all_unique 100 pool_25
+python $BASE_DIR/software/diff_expr/2_diff_expr.py 22276 all_unique 50 pool_26
+```
 
-pool_26: `python $BASE_DIR/software/diff_expr/2_diff_expr.py 22276 all_unique_pool_26 50`
+CDS:
+
+```
+python $BASE_DIR/software/diff_expr/2_diff_expr.py 22276 all_unique_cds 20 pool_24
+python $BASE_DIR/software/diff_expr/2_diff_expr.py 22276 all_unique_cds 100 pool_25
+python $BASE_DIR/software/diff_expr/2_diff_expr.py 22276 all_unique_cds 50 pool_26
+```
+
 
 4. GO term
 
-pool_24: 
+All:
 
 ```
-for t in 2 -2 1.5 -1.5; do echo "bsub -q medium -R \"rusage[mem=30G]\" Rscript $BASE_DIR/software/diff_expr/cluster_profiler_2.r 22276 all_unique_pool_24 20 $t hg19"; done
-``` 
-
-pool_25: 
-
-```
-for t in 2 -2 1.5 -1.5; do echo "bsub -q medium -R \"rusage[mem=30G]\" Rscript $BASE_DIR/software/diff_expr/cluster_profiler_2.r 22276 all_unique_pool_25 100 $t hg19"; done
+for t in 2 -2 1.5 -1.5; do echo "bsub -q medium -R \"rusage[mem=30G]\" Rscript $BASE_DIR/software/diff_expr/cluster_profiler_2.r 22276 all_unique 20 $t hg19 pool_24"; done
+for t in 2 -2 1.5 -1.5; do echo "bsub -q medium -R \"rusage[mem=30G]\" Rscript $BASE_DIR/software/diff_expr/cluster_profiler_2.r 22276 all_unique 100 $t hg19 pool_25"; done
+for t in 2 -2 1.5 -1.5; do echo "bsub -q medium -R \"rusage[mem=30G]\" Rscript $BASE_DIR/software/diff_expr/cluster_profiler_2.r 22276 all_unique 50 $t hg19 pool_26"; done
 ```
 
-pool_26: 
+CDS:
 
 ```
-for t in 2 -2 1.5 -1.5; do echo "bsub -q medium -R \"rusage[mem=30G]\" Rscript $BASE_DIR/software/diff_expr/cluster_profiler_2.r 22276 all_unique_pool_26 50 $t hg19"; done
+for t in 2 -2 1.5 -1.5; do echo "bsub -q medium -R \"rusage[mem=30G]\" Rscript $BASE_DIR/software/diff_expr/cluster_profiler_2.r 22276 all_unique_cds 20 $t hg19 pool_24"; done
+for t in 2 -2 1.5 -1.5; do echo "bsub -q medium -R \"rusage[mem=30G]\" Rscript $BASE_DIR/software/diff_expr/cluster_profiler_2.r 22276 all_unique_cds 100 $t hg19 pool_25"; done
+for t in 2 -2 1.5 -1.5; do echo "bsub -q medium -R \"rusage[mem=30G]\" Rscript $BASE_DIR/software/diff_expr/cluster_profiler_2.r 22276 all_unique_cds 50 $t hg19 pool_26"; done
 ```
 
-5. copy results: `scp -r e984a@odcf-cn34u03s10:$BASE_DIR/22276/analysis/output/figures/go_term/ /Users/b250-admin/analysis/22276/figures && scp -r e984a@odcf-cn34u03s10:$BASE_DIR/22276/analysis/output/go_term/ /Users/b250-admin/analysis/22276/data_files`
+5. copy results: `scp -r e984a@odcf-cn34u03s10:$BASE_DIR/22276/analysis/output/figures/go_term/ /Users/b250-admin/analysis/22276/figures`
 
