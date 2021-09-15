@@ -7,16 +7,50 @@
 1. Get sequences
 ```
 bsub -q medium -R "rusage[mem=30G]" $BASE_DIR/software/ext_diricore/1_get_seq_from_bam.sh 22276 all_unique
+```
+
+2. Get gene counts:
+
+All counts: 
+
+```
+bsub -q medium -R "rusage[mem=30G]" python $BASE_DIR/software/ext_diricore/0_get_gene_counts.py 22276 all_unique hg19
+```
+
+CDS counts: 
+
+```
 bsub -q medium -R "rusage[mem=30G]" python $BASE_DIR/software/ext_diricore/0_get_counts_from_cds.py 22276 all_unique hg19
 ```
 
 2. Diff expr:
 
-pool 24: `Rscript $BASE_DIR/software/diff_expr/1_diff_expr.r 22276 all_unique_pool_24 20`
+```
+module load gcc/7.2.0
+module load R/3.4.2
+```
 
-pool 25: `Rscript $BASE_DIR/software/diff_expr/1_diff_expr.r 22276 all_unique_pool_25 100`
+pool 24 (all counts + cds counts): 
 
-pool 26: `Rscript $BASE_DIR/software/diff_expr/1_diff_expr.r 22276 all_unique_pool_25 50`
+```
+Rscript $BASE_DIR/software/diff_expr/1_diff_expr.r 22276 all_unique 20 hg19 pool_24
+Rscript $BASE_DIR/software/diff_expr/1_diff_expr.r 22276 all_unique_cds 20 hg19 pool_24
+```
+
+pool 25 (all counts + cds counts): 
+
+```
+Rscript $BASE_DIR/software/diff_expr/1_diff_expr.r 22276 all_unique 100 hg19 pool_25
+
+Rscript $BASE_DIR/software/diff_expr/1_diff_expr.r 22276 all_unique_cds 100 hg19 pool_25
+```
+
+pool 26 (all counts + cds counts): 
+
+```
+Rscript $BASE_DIR/software/diff_expr/1_diff_expr.r 22276 all_unique 50 hg19 pool_26
+Rscript $BASE_DIR/software/diff_expr/1_diff_expr.r 22276 all_unique_cds 50 hg19 pool_26
+```
 
 3. Agg contrasts into 1 file:
 
