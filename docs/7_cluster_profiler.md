@@ -4,12 +4,13 @@
 
 
 
-1. Get sequences
+## 1. Get sequences
+
 ```
 bsub -q medium -R "rusage[mem=30G]" $BASE_DIR/software/ext_diricore/1_get_seq_from_bam.sh 22276 all_unique
 ```
 
-2. Get gene counts:
+## 2. Get gene counts:
 
 All counts: 
 
@@ -23,7 +24,7 @@ CDS counts:
 bsub -q medium -R "rusage[mem=30G]" python $BASE_DIR/software/ext_diricore/0_get_counts_from_cds.py 22276 all_unique hg19
 ```
 
-2. Diff expr:
+## 3. Diff expr:
 
 ```
 module load gcc/7.2.0
@@ -51,7 +52,7 @@ Rscript $BASE_DIR/software/diff_expr/1_diff_expr.r 22276 all_unique 50 hg19 pool
 Rscript $BASE_DIR/software/diff_expr/1_diff_expr.r 22276 all_unique_cds 50 hg19 pool_26
 ```
 
-3. Agg contrasts into 1 file:
+## 4. Agg contrasts into 1 file
 
 All:
 
@@ -70,7 +71,7 @@ python $BASE_DIR/software/diff_expr/2_diff_expr.py 22276 all_unique_cds 50 pool_
 ```
 
 
-4. GO term
+## 5. GO term
 
 All:
 
