@@ -89,10 +89,13 @@ These files will be used for the main alignment.
 ## Stats
 
 Parse blat results: `bsub -q medium -R "rusage[mem=30G]" python $BASE_DIR/software/preprocessing/2_rrna/3_parse_blat_results.py 20910`
+
 This script extract the information about the alignment from the `.psl` files (output of the step 2) and groups the reads by each gene, and by the position of 5'end  of the read in the gene sequence.
 
 Output dir 1: `$BASE_DIR/20910/analysis/output/rrna/reads_per_position`
+
 Output dir 2: `$BASE_DIR/20910/analysis/output/rrna/reads_per_gene`
+
 Output file: `less $BASE_DIR/20910/analysis/output/alignment_stats/rrna_stats.txt`
 
 The stat file `less $BASE_DIR/20910/analysis/output/alignment_stats/rrna_stats.txt` contains the following information:
