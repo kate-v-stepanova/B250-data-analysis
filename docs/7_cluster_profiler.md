@@ -89,5 +89,12 @@ for t in 2 -2 1.5 -1.5; do echo "bsub -q medium -R \"rusage[mem=30G]\" Rscript $
 for t in 2 -2 1.5 -1.5; do echo "bsub -q medium -R \"rusage[mem=30G]\" Rscript $BASE_DIR/software/diff_expr/cluster_profiler_2.r 22276 all_unique_cds 50 $t hg19 pool_26"; done
 ```
 
-5. copy results: `scp -r e984a@odcf-cn34u03s10:$BASE_DIR/22276/analysis/output/figures/go_term/ /Users/b250-admin/analysis/22276/figures`
+## 5. copy results 
+
+```
+scp -r USERNAME@odcf-cn34u03s10:$BASE_DIR/22276/analysis/output/figures/go_term/ ~/analysis/22276/figures
+```
+
+Note that the dir `~/analysis/22276/figures` has to be created on the local computer
+
 
