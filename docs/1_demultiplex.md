@@ -301,7 +301,9 @@ Or, simply run it from the RStudio: `https://odcf-rstudio01.dkfz.de/`
 
 ### Copy data from the cluster
 
-Copy data: `scp -r  e984a@odcf-cn34u03s10:/icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/figures/* ~/analysis/20910/figures`
+Copy data: `scp -r  USERNAME@odcf-cn34u03s10:/icgc/dkfzlsdf/analysis/OE0532/20910/analysis/output/figures/* ~/analysis/20910/figures`
+
+Note that `~/analysis/20910/figures` has to be created on your local computer. 
 
 ### The cutadapt plot
 
