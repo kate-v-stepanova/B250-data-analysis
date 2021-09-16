@@ -4,10 +4,131 @@
 
 > **_IMPORTANT 2:_** This analysis will work for the datasets which have replicates. 
 
+> **_IMPORTANT 3:_** [RiboDiff](https://github.com/kate-v-stepanova/RiboDiff) has to be installed!
 
 This analysis is performed for coupled RNA-seq and RP datasets.
 
-Let's take as an example RP dataset `21221` and RNA-seq dataset `21221_RNA`
+It requires replicates. If no replicates, then split into replicates
+
+## 0. Install RiboDiff - skip if already done!
+
+This requires python2.7!
+
+Clone repo into `software` dir:
+
+```
+git clone git@github.com:kate-v-stepanova/RiboDiff.git
+```
+
+Activate p2 virtual env:
+
+```
+conda activate diricore
+```
+
+Install RiboDiff
+
+```
+cd RiboDiff
+python setup.py build
+python setup.py test (optional step)
+python setup.py install
+```
+
+For more installation instructions, check the file: `$BASE_DIR/software/RiboDiff/INSTALL`
+
+## 1. Get sequences from bam
+
+RNA-seq:
+```
+bsub -q medium -R "rusage[mem=30G]" /icgc/dkfzlsdf/analysis/OE0532/software/ext_diricore/1_get_seq_from_bam.sh 21221_RNA all_unique
+```
+
+RP: 
+
+```
+bsub -q medium -R "rusage[mem=30G]" /icgc/dkfzlsdf/analysis/OE0532/software/ext_diricore/1_get_seq_from_bam.sh 21221 all_unique
+```
+
+> **_Note:_** Samplenames in both datasets have to MATCH! If not, please rename.
+
+
+## 2. Aggregate counts 
+
+coding genes: 
+
+```
+while read -r contrast; do echo "bsub -q medium -R \"rusage[mem=30G]\" python /icgc/dkfzlsdf/analysis/OE0532/software/RiboDiff/b250_scripts/aggregate_counts2.py 21221_RNA 21221 all_unique $contrast"; done < /icgc/dkfzlsdf/analysis/OE0532/21221/analysis/input/metadata/rpf_density_contrasts.tsv
+```
+
+
+## 3. Create metafiles
+
+Create dir: 
+
+```
+mkdir -p /icgc/dkfzlsdf/analysis/OE0532/21221/analysis/input/ribo_diff/
+```
+
+Touch metafiles:
+
+```
+while read -r contrast; do s=$(echo $contrast | cut -f1 -d-); c=$(echo $contrast | cut -f2 -d-);  echo "touch $BASE_DIR/21221/analysis/input/ribo_diff/${s}_vs_${c}.metafile.csv"; done < $BASE_DIR/21221/analysis/input/metadata/rpf_density_contrasts.tsv
+```
+
+The output will be: (copy & paste it!)
+
+```
+touch /icgc/dkfzlsdf/analysis/OE0532/21221/analysis/input/ribo_diff/GFP_sh_vs_Ctrl_sh.metafile.csv
+touch /icgc/dkfzlsdf/analysis/OE0532/21221/analysis/input/ribo_diff/sh12_vs_Ctrl_sh.metafile.csv
+touch /icgc/dkfzlsdf/analysis/OE0532/21221/analysis/input/ribo_diff/sh40_vs_Ctrl_sh.metafile.csv
+touch /icgc/dkfzlsdf/analysis/OE0532/21221/analysis/input/ribo_diff/sh12_vs_GFP_sh.metafile.csv
+touch /icgc/dkfzlsdf/analysis/OE0532/21221/analysis/input/ribo_diff/sh40_vs_GFP_sh.metafile.csv
+touch /icgc/dkfzlsdf/analysis/OE0532/21221/analysis/input/ribo_diff/CTN_sh_vs_GFP_sh.metafile.csv
+```
+
+Example of metafile: `vim $BASE_DIR/21221/analysis/input/ribo_diff/CTN_sh_vs_GFP_sh.metafile.csv`
+
+```
+Samples,Data_Type,Conditions
+RP_GFP_sh_1,Ribo-Seq,Control
+RP_GFP_sh_2,Ribo-Seq,Control
+RP_GFP_sh_3,Ribo-Seq,Control
+RP_CTN_sh_1,Ribo-Seq,Treated
+RP_CTN_sh_2,Ribo-Seq,Treated
+RP_CTN_sh_3,Ribo-Seq,Treated
+RNA_GFP_sh_1,RNA-Seq,Control
+RNA_GFP_sh_2,RNA-Seq,Control
+RNA_GFP_sh_3,RNA-Seq,Control
+RNA_CTN_sh_1,RNA-Seq,Treated
+RNA_CTN_sh_2,RNA-Seq,Treated
+RNA_CTN_sh_3,RNA-Seq,Treated
+```
+
+Copy metafiles to `21221_RNA` directory: 
+
+```
+for f in $(ls /icgc/dkfzlsdf/analysis/OE0532/21221/analysis/input/ribo_diff/*.csv); do echo "cp $f /icgc/dkfzlsdf/analysis/OE0532/21221_RNA/analysis/input/ribo_diff/"; done
+```
+
+
+## 3. Run RiboDiff 
+
+```
+/icgc/dkfzlsdf/analysis/OE0532/software/RiboDiff/b250_scripts/ribo_diff.sh 21221_RNA 21221 all_unique long
+```
+
+Requires python 2.7
+
+4. Then: 
+```
+rm /icgc/dkfzlsdf/analysis/OE0532/21221_RNA/analysis/output/ribo_diff/te/all_unique/*.pkl
+cp /icgc/dkfzlsdf/analysis/OE0532/21221_RNA/analysis/output/ribo_diff/te/all_unique/* /icgc/dkfzlsdf/analysis/OE0532/21221/analysis/output/ribo_diff/te/all_unique
+cp /icgc/dkfzlsdf/analysis/OE0532/21221_RNA/analysis/output/ribo_diff/te/all_unique/*.pdf /icgc/dkfzlsdf/analysis/OE0532/21221_RNA/analysis/output/figures/ribo_diff
+cp /icgc/dkfzlsdf/analysis/OE0532/21221/analysis/output/ribo_diff/te/*.pdf /icgc/dkfzlsdf/analysis/OE0532/21221/analysis/output/figures/ribo_diff
+python /icgc/dkfzlsdf/analysis/OE0532/software/diricore/utils/fix_excel.py 21221_RNA all_unique
+python /icgc/dkfzlsdf/analysis/OE0532/software/diricore/utils/fix_excel.py 21221 all_unique
+```
 
 
 ## Highlight specific genes
