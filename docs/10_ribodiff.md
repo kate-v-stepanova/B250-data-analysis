@@ -8,7 +8,13 @@
 
 This analysis is performed for coupled RNA-seq and RP datasets.
 
-It requires replicates. If no replicates, then split into replicates
+It requires replicates. If no replicates, then split into replicates: 
+
+```
+$BASE_DIR/software/RiboDiff/b250_scripts/split_into_replicates.py PROJECT_ID
+```
+
+(maybe this script needs some modifications)
 
 ## 0. Install RiboDiff - skip if already done!
 
@@ -58,7 +64,7 @@ bsub -q medium -R "rusage[mem=30G]" $BASE_DIR/software/ext_diricore/1_get_seq_fr
 coding genes: 
 
 ```
-while read -r contrast; do echo "bsub -q medium -R \"rusage[mem=30G]\" python $BASE_DIR/software/RiboDiff/b250_scripts/aggregate_counts2.py 21221_RNA 21221 all_unique $contrast"; done < $BASE_DIR/21221/analysis/input/metadata/rpf_density_contrasts.tsv
+while read -r contrast; do echo "bsub -q medium -R \"rusage[mem=30G]\" python $BASE_DIR/software/ribo_diff/aggregate_counts2.py 21221_RNA 21221 all_unique $contrast"; done < $BASE_DIR/21221/analysis/input/metadata/rpf_density_contrasts.tsv
 ```
 
 
@@ -116,7 +122,7 @@ for f in $(ls $BASE_DIR/21221/analysis/input/ribo_diff/*.csv); do echo "cp $f $B
 
 ```
 source activate diricore
-$BASE_DIR/software/RiboDiff/b250_scripts/ribo_diff.sh 21221_RNA 21221 all_unique long
+$BASE_DIR/software/ribo_diff/ribo_diff.sh 21221_RNA 21221 all_unique long
 ```
 
 ## 4. Cleanup
@@ -127,8 +133,8 @@ cp $BASE_DIR/21221_RNA/analysis/output/ribo_diff/te/all_unique/* $BASE_DIR/21221
 cp $BASE_DIR/21221_RNA/analysis/output/ribo_diff/te/all_unique/*.pdf $BASE_DIR/21221_RNA/analysis/output/figures/ribo_diff
 cp $BASE_DIR/21221/analysis/output/ribo_diff/te/*.pdf $BASE_DIR/21221/analysis/output/figures/ribo_diff
 
-python /icgc/dkfzlsdf/analysis/OE0532/software/diricore/utils/fix_excel.py 21221_RNA all_unique
-python /icgc/dkfzlsdf/analysis/OE0532/software/diricore/utils/fix_excel.py 21221 all_unique
+python $BASE_DIR/software/ribo_diff/fix_excel.py 21221_RNA all_unique
+python $BASE_DIR/software/ribo_diff/fix_excel.py 21221 all_unique
 ```
 
 
