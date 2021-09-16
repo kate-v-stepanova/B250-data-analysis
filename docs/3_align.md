@@ -132,7 +132,7 @@ In each directory `toGenome` and `toTranscriptome` we can see the following file
 
 ### Alignment stats
 
-0. Load samtools
+#### 0. Load samtools
 
 To get the alignment stats, [samtools](http://quinlanlab.org/tutorials/samtools/samtools.html) is required. 
 
@@ -142,19 +142,32 @@ On the cluster the samtools can be loaded with this command:
 module load samtools
 ```
 
-1. Get alignment stats 
+#### 1. Get alignment stats 
 
 ```
 bsub -q medium -R "rusage[mem=30G]" $BASE_DIR/software/preprocessing/stats/get_alignment_stats.sh 20910
 ```
 
-2. Aggregate stats into 1 file 
+#### 2. Check bc_split_stats
+
+This step requires `bc_split_stats.txt`. If dataset contains several pools, most likely each pool has it's own bc_split_stats file.
+
+To aggregate all bc_split stats into a single file, do 
+
+```
+$BASE_DIR/software/preprocessing/stats/multiple_bc_split_stats.sh 20910
+```
+
+Output file will be located here: `$BASE_DIR//20910/analysis/output/bc_split_stats.txt`
+
+
+#### 3. Aggregate stats into 1 file 
 
 ```
 python $BASE_DIR/software/preprocessing/stats/get_alignment_stats_2.py 20910
 ```
 
-3. Plot alignment stats
+#### 4. Plot alignment stats
 
 ```
 module load gcc/7.2.0 && module load R/3.6.2 && Rscript $BASE_DIR/software/preprocessing/stats/plot_star_alignment_stats.r 20910
