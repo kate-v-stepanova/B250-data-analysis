@@ -41,13 +41,13 @@ For more installation instructions, check the file: `$BASE_DIR/software/RiboDiff
 
 RNA-seq:
 ```
-bsub -q medium -R "rusage[mem=30G]" /icgc/dkfzlsdf/analysis/OE0532/software/ext_diricore/1_get_seq_from_bam.sh 21221_RNA all_unique
+bsub -q medium -R "rusage[mem=30G]" $BASE_DIR/software/ext_diricore/1_get_seq_from_bam.sh 21221_RNA all_unique
 ```
 
 RP: 
 
 ```
-bsub -q medium -R "rusage[mem=30G]" /icgc/dkfzlsdf/analysis/OE0532/software/ext_diricore/1_get_seq_from_bam.sh 21221 all_unique
+bsub -q medium -R "rusage[mem=30G]" $BASE_DIR/software/ext_diricore/1_get_seq_from_bam.sh 21221 all_unique
 ```
 
 > **_Note:_** Samplenames in both datasets have to MATCH! If not, please rename.
@@ -58,7 +58,7 @@ bsub -q medium -R "rusage[mem=30G]" /icgc/dkfzlsdf/analysis/OE0532/software/ext_
 coding genes: 
 
 ```
-while read -r contrast; do echo "bsub -q medium -R \"rusage[mem=30G]\" python /icgc/dkfzlsdf/analysis/OE0532/software/RiboDiff/b250_scripts/aggregate_counts2.py 21221_RNA 21221 all_unique $contrast"; done < /icgc/dkfzlsdf/analysis/OE0532/21221/analysis/input/metadata/rpf_density_contrasts.tsv
+while read -r contrast; do echo "bsub -q medium -R \"rusage[mem=30G]\" python $BASE_DIR/software/RiboDiff/b250_scripts/aggregate_counts2.py 21221_RNA 21221 all_unique $contrast"; done < $BASE_DIR/21221/analysis/input/metadata/rpf_density_contrasts.tsv
 ```
 
 
@@ -67,7 +67,7 @@ while read -r contrast; do echo "bsub -q medium -R \"rusage[mem=30G]\" python /i
 Create dir: 
 
 ```
-mkdir -p /icgc/dkfzlsdf/analysis/OE0532/21221/analysis/input/ribo_diff/
+mkdir -p $BASE_DIR/21221/analysis/input/ribo_diff/
 ```
 
 Touch metafiles:
@@ -108,24 +108,25 @@ RNA_CTN_sh_3,RNA-Seq,Treated
 Copy metafiles to `21221_RNA` directory: 
 
 ```
-for f in $(ls /icgc/dkfzlsdf/analysis/OE0532/21221/analysis/input/ribo_diff/*.csv); do echo "cp $f /icgc/dkfzlsdf/analysis/OE0532/21221_RNA/analysis/input/ribo_diff/"; done
+for f in $(ls $BASE_DIR/21221/analysis/input/ribo_diff/*.csv); do echo "cp $f $BASE_DIR/21221_RNA/analysis/input/ribo_diff/"; done
 ```
 
 
 ## 3. Run RiboDiff 
 
 ```
-/icgc/dkfzlsdf/analysis/OE0532/software/RiboDiff/b250_scripts/ribo_diff.sh 21221_RNA 21221 all_unique long
+source activate diricore
+$BASE_DIR/software/RiboDiff/b250_scripts/ribo_diff.sh 21221_RNA 21221 all_unique long
 ```
 
-Requires python 2.7
+## 4. Cleanup
 
-4. Then: 
 ```
-rm /icgc/dkfzlsdf/analysis/OE0532/21221_RNA/analysis/output/ribo_diff/te/all_unique/*.pkl
-cp /icgc/dkfzlsdf/analysis/OE0532/21221_RNA/analysis/output/ribo_diff/te/all_unique/* /icgc/dkfzlsdf/analysis/OE0532/21221/analysis/output/ribo_diff/te/all_unique
-cp /icgc/dkfzlsdf/analysis/OE0532/21221_RNA/analysis/output/ribo_diff/te/all_unique/*.pdf /icgc/dkfzlsdf/analysis/OE0532/21221_RNA/analysis/output/figures/ribo_diff
-cp /icgc/dkfzlsdf/analysis/OE0532/21221/analysis/output/ribo_diff/te/*.pdf /icgc/dkfzlsdf/analysis/OE0532/21221/analysis/output/figures/ribo_diff
+rm $BASE_DIR/21221_RNA/analysis/output/ribo_diff/te/all_unique/*.pkl
+cp $BASE_DIR/21221_RNA/analysis/output/ribo_diff/te/all_unique/* $BASE_DIR/21221/analysis/output/ribo_diff/te/all_unique
+cp $BASE_DIR/21221_RNA/analysis/output/ribo_diff/te/all_unique/*.pdf $BASE_DIR/21221_RNA/analysis/output/figures/ribo_diff
+cp $BASE_DIR/21221/analysis/output/ribo_diff/te/*.pdf $BASE_DIR/21221/analysis/output/figures/ribo_diff
+
 python /icgc/dkfzlsdf/analysis/OE0532/software/diricore/utils/fix_excel.py 21221_RNA all_unique
 python /icgc/dkfzlsdf/analysis/OE0532/software/diricore/utils/fix_excel.py 21221 all_unique
 ```
