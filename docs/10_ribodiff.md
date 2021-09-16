@@ -52,7 +52,16 @@ RPS29
 RPS30
 ```
 
-2. copy to RP: `cp $BASE_DIR/21221_RNA/analysis/input/metadata/RPG_small.txt $BASE_DIR/21221/analysis/input/metadata/`
+2. copy to RP: 
+ 
+```
+cp $BASE_DIR/21221_RNA/analysis/input/metadata/RPG_small.txt $BASE_DIR/21221/analysis/input/metadata/
+```
 
-3. highlight genes: `module load R/3.6.2 && module load gcc/7.2.0 && Rscript $BASE_DIR/software/ribo_diff/highlight_genes.r 21221_RNA all_unique $BASE_DIR/21221_RNA/analysis/input/metadata/RPG_small.txt`
+3. highlight genes: 
 
+```
+module load R/3.6.2
+module load gcc/7.2.0
+Rscript $BASE_DIR/software/ribo_diff/highlight_genes.r 21221_RNA all_unique $BASE_DIR/21221_RNA/analysis/input/metadata/RPG_small.txt
+```
