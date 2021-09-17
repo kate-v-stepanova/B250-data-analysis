@@ -74,7 +74,7 @@ The plot will look like that:
 We can see that the image is a bit out of scale. We can ajust the scale with the following command: 
 
 ```
-bsub -q long -R "rusage[mem=50G]" $BASE_DIR/software/diricore/subsequence_analysis.sh 20910 mm10 50 all_unique plots_only 4.0
+bsub -q long -R "rusage[mem=50G]" $BASE_DIR/software/diricore/subsequence_analysis.sh 20910 mm10 50 all_unique all_samples plots_only 4.0
 ```
 
 where `plots_only` indicates that the script should not generate a new data file, only the plots. And `4.0` is the limits of y-axis. 
@@ -200,3 +200,37 @@ The files will be named `20910.pool1.all.m10.Ala.rpf_5p_density_shift_plot.pdf`,
 Then only cotransts from `rpf_density_contrasts_pool1.tsv` file will be plotted together:
 
 ![](/pics/diricore_6.png)
+
+
+## 7. Diricore plots with the opiton `plots_only`
+
+Let's say, we have already a data file `.hdf5`. We just want to generate plots without generating the data file.
+
+For all samples the commands will be:
+
+```
+bsub -q long -R "rusage[mem=50G]" $BASE_DIR/software/diricore/rpf_density_analysis.sh 20910 mm10 10 all_unique all_samples plots_only
+bsub -q long -R "rusage[mem=50G]" $BASE_DIR/software/diricore/subsequence_analysis.sh 20910 mm10 50 all_unique all_samples plots_only
+```
+
+Or for example, we decided that we want to plot different contrasts. E.g. all samples vs Ctrl. So we created a new samplenames file:
+
+```
+cp $BASE_DIR/20910/analysis/input/metadata/rpf_density_samplenames.tsv $BASE_DIR/20910/analysis/input/metadata/rpf_density_samplenames_all_vs_Ctrl.tsv 
+```
+
+and we created a new contrasts file:
+
+```
+vim $BASE_DIR/20910/analysis/input/metadata/rpf_density_contrasts_all_vs_Ctrl.tsv 
+```
+
+Now we can generate diricore plots for our new contrasts:
+
+```
+
+bsub -q long -R "rusage[mem=50G]" $BASE_DIR/software/diricore/rpf_density_analysis.sh 20910 mm10 10 all_unique all_vs_Ctrl plots_only
+bsub -q long -R "rusage[mem=50G]" $BASE_DIR/software/diricore/subsequence_analysis.sh 20910 mm10 50 all_unique all_vs_Ctrl plots_only
+```
+
+where `all_vs_Ctrl` is a contrast name (instead of `all_samples`)
