@@ -2,6 +2,8 @@
 
 > **_IMPORTANT:_** `$BASE_DIR` has to be specified in your `.bash_profile`. Details [here](docs/0_before_you_start.md)
 
+> **_IMPORTANT:_** Before running this analysis, python2 environment has to be set up. Details [here](docs/0_before_you_start.md). If it's set up, activate the environment with `conda activate diricore`
+
 
 ## 1. Create metafiles
 
