@@ -43,31 +43,6 @@ module load R/3.6.2
 Rscript $BASE_DIR/software/ribo_waltz/2_periodicity.r 20910 mm10 all_unique
 ```
 
-## 4. RiboWaltz stats
-
-Open the ribowaltz_stats file:  `vim $BASE_DIR/20910/analysis/output/periodicity/all_unique/ribowaltz_stats.tsv`
-
-Do the following vim commands:
-
-```
-:%s/.bam//g
-:%s/Reading //g
-:%s/ M/M/g
-:%s/Input reads: //g
-:%s/Output reads: //g
-:%s/(.*/
-:%s/ //g
-:%s/\n/\t/g
-:%s/\t\t/\t/g
-:%s/\tS/\rS/g
-:%s/Good.*//g
-:%s/Great.*/0M/g
-:%s/Done.*//g
-```
-
-Add header: `sample  input_reads not_in_annotation   negative_strand output_reads   cds_reads   inframe_reads`
-
-
 # Ribowaltz for a subset of samples
 
 It can happen that the dataset has 2 pools, and we want to analyse each pool independently. 
