@@ -50,6 +50,13 @@ RNA-seq:
 bsub -q medium -R "rusage[mem=30G]" $BASE_DIR/software/ext_diricore/1_get_seq_from_bam.sh 21221_RNA all_unique
 ```
 
+If for RNA-seq data there are no UMIs, then the script will not find the `*dedup.bam` files. Just run the script with the argument `all`. And then create symlinks:
+
+```
+mkdir -p $BASE_DIR/21221_RNA/analysis/output/ext_diricore/all_unique/tsv/
+for f in $(ls $BASE_DIR/21221_RNA/analysis/output/ext_diricore/all/tsv/*.tsv); do fn=$(basename $f); echo "ln -s $f $BASE_DIR/21221_RNA/analysis/output/ext_diricore/all_unique/tsv/$fn"; done
+```
+
 RP: 
 
 ```
