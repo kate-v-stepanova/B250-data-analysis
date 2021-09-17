@@ -92,4 +92,9 @@ Python2 is mainly used by diricore and couple of more tools.
 
 3. Activate env: `conda activate diricore` or `source activate diricore`
 
+3. Install dependencies
+
+```
+pip install HTSeq==0.11.2 h5py==2.9.0 numpy==1.16.2 
+```
 
