@@ -23,7 +23,7 @@ This requires python2.7!
 Clone repo into `software` dir:
 
 ```
-git clone git@github.com:kate-v-stepanova/RiboDiff.git
+git clone git@github.com:kate-v-stepanova/RiboDiff
 ```
 
 Activate p2 virtual env:
