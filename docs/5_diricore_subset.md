@@ -19,10 +19,16 @@ MT-ND6
 ```
 
 
-## 1. Create a reference file: 
+## 0. Create a reference file - skip if already done
 
 ```
 cat $BASE_DIR/static/hg19/MT-genes.txt | cut -d '|' -f 1 > $BASE_DIR/static/hg19/MT-transcripts.txt
+```
+
+## 1. Load samtools
+
+```
+module load samtools
 ```
 
 ## 2. Extract reads from bam: 
