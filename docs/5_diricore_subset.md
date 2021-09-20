@@ -34,21 +34,21 @@ module load samtools
 ## 2. Extract reads from bam: 
 
 ```
-$BASE_DIR/software/diricore_subset/1_extract_bam.sh 22276 all_unique $BASE_DIR/static/hg19/MT-transcripts.txt
+$BASE_DIR/software/diricore_subset/1_extract_bam.sh 22276 all $BASE_DIR/static/hg19/MT-transcripts.txt
 ```
 
-New bam files will be written to: `$BASE_DIR/22276/analysis/output/diricore_subset/all_unique_MT-transcripts/alignments/toGenome`
+New bam files will be written to: `$BASE_DIR/22276/analysis/output/diricore_subset/all_MT-transcripts/alignments/toGenome`
 
 ## 3. Run rpf density analysis: 
 
 ```
-bsub -q long -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/rpf_density_analysis.sh 18436 hg19 5 all_MT-genes
+bsub -q long -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/rpf_density_analysis.sh 18436 hg19 5 all_MT-transcrips
 ```
 
 ## 4. Subsequence analysis:
 
 ```
-bsub -q long -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/subsequence_analysis.sh 18436 hg19 5 all_MT-genes
+bsub -q long -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/subsequence_analysis.sh 18436 hg19 5 all_MT-transcripts
 ```
 
 ## 5. RPF transcript distribution:
@@ -64,10 +64,10 @@ Let's say we want to exclude mitochondial genes from the analysis.
 ## 1. Extract reads from bam: 
 
 ```
-$BASE_DIR/software/diricore_subset/1_extract_bam.sh 22276 all_unique $BASE_DIR/static/hg19/MT-transcripts.txt exclude
+$BASE_DIR/software/diricore_subset/1_extract_bam.sh 22276 all $BASE_DIR/static/hg19/MT-transcripts.txt exclude
 ```
 
-New bam files will be written to: `$BASE_DIR/22276/analysis/output/diricore_subset/all_unique_excl_MT-transcripts/alignments/toGenome`
+New bam files will be written to: `$BASE_DIR/22276/analysis/output/diricore_subset/all_excl_MT-transcripts/alignments/toGenome`
 
 Perform the analysis as described above.
 
@@ -78,13 +78,13 @@ Becase a few codons are different in cytosolic genes and MT-genes, there are 2 s
 ### 2.1 Subsequence plots for the cytosolic genes: 
 
 ```
-bsub -q long -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/subsequence_analysis.sh 18436 hg19 5 all_MT-genes
+bsub -q long -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/subsequence_analysis.sh 18436 hg19 5 all_MT-transcripts
 ```
 
 ### 2.2 Subsequence plots for the mitochondiral genes: 
 
 ```
-bsub -q long -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/subsequence_analysis_MT.sh 18436 hg19 5 all_excl_MT-genes
+bsub -q long -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/subsequence_analysis_MT.sh 18436 hg19 5 all_excl_MT-transcripts
 ```
 
 For RPF_density analysis the script is the same.
