@@ -54,7 +54,7 @@ bsub -q long -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/subsequence
 ## 5. RPF transcript distribution:
 
 ```
-bsub -q long  -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/plot_rpf_transcript_distribution.sh 18436 hg19 5 all_MT-genes
+bsub -q long  -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/plot_rpf_transcript_distribution.sh 18436 hg19 5 all_MT-transcripts
 ```
 
 # Diricore EXCLUDING subset of genes
