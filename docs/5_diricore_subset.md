@@ -61,24 +61,30 @@ bsub -q long  -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/plot_rpf_t
 
 Let's say we want to exclude mitochondial genes from the analysis.
 
-Extract reads from bam: `$BASE_DIR/software/diricore_subset/1_extract_bam.sh 22276 all_unique $BASE_DIR/static/hg19/MT-transcripts.txt exclude`
+## 1. Extract reads from bam: 
+
+```
+$BASE_DIR/software/diricore_subset/1_extract_bam.sh 22276 all_unique $BASE_DIR/static/hg19/MT-transcripts.txt exclude
+```
 
 New bam files will be written to: `$BASE_DIR/22276/analysis/output/diricore_subset/all_unique_excl_MT-transcripts/alignments/toGenome`
 
 Perform the analysis as described above.
 
-# Difference between MT and cytosolic genes in subsequence analysis
+## 2. Difference between MT and cytosolic genes in subsequence analysis
 
 Becase a few codons are different in cytosolic genes and MT-genes, there are 2 subsequence scripts. They output the same data files, but the plotting function is different due to the codons annotation. 
 
-## Subsequence plots for the cytosolic genes: 
+### 2.1 Subsequence plots for the cytosolic genes: 
 
 ```
 bsub -q long -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/subsequence_analysis.sh 18436 hg19 5 all_MT-genes
 ```
 
-## Subsequence plots for the mitochondiral genes: 
+### 2.2 Subsequence plots for the mitochondiral genes: 
 
 ```
 bsub -q long -R "rusage[mem=20G]" $BASE_DIR/software/diricore_subset/subsequence_analysis_MT.sh 18436 hg19 5 all_excl_MT-genes
 ```
+
+For RPF_density analysis the script is the same.
