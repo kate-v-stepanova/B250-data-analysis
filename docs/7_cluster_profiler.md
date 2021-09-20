@@ -7,6 +7,7 @@
 ## 1. Get sequences
 
 ```
+module load samtools
 bsub -q medium -R "rusage[mem=30G]" $BASE_DIR/software/ext_diricore/1_get_seq_from_bam.sh 22276 all_unique
 ```
 
