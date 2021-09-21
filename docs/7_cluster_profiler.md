@@ -74,6 +74,13 @@ python $BASE_DIR/software/diff_expr/2_diff_expr.py 22276 all_unique_cds 50 pool_
 
 ## 5. GO term
 
+Load R module:
+
+```
+module load gcc/7.2.0
+module load R/3.6.2
+```
+
 All:
 
 ```
