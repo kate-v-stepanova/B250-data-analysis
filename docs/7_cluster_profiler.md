@@ -106,3 +106,23 @@ scp -r USERNAME@odcf-cn34u03s10:$BASE_DIR/22276/analysis/output/figures/go_term/
 Note that the dir `~/analysis/22276/figures` has to be created on the local computer
 
 
+
+# Cluster Profiler with TE as input
+
+## 1. Get TE results
+
+Get TE results as described [here](docs/10_ribodiff.md)
+
+## 2. Aggregate TE results:
+
+```
+python /omics/groups/OE0532/internal/from_snapshot/software/diff_expr/aggregate_TE_results.py 21221 all_unique
+```
+
+## 3. Cluster Profiler:
+
+```
+module load R/3.6.2
+module load gcc/7.2.0
+Rscript /omics/groups/OE0532/internal/from_snapshot/software/diff_expr/cluster_profiler_TE.r 21221 all_unique etc
+```
