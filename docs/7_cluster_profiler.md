@@ -125,5 +125,5 @@ python /omics/groups/OE0532/internal/from_snapshot/software/diff_expr/aggregate_
 module load R/3.6.2
 module load gcc/7.2.0
 
-for t in 2 -2 1.5 -1.5; do echo "bsub -q medium -R \"rusage[mem=30G]\" Rscript $BASE_DIR/software/diff_expr/cluster_profiler_2.r 21221 all_unique 20 $t hg19
+for t in 2 -2 1.5 -1.5; do echo "bsub -q medium -R \"rusage[mem=30G]\" Rscript $BASE_DIR/software/diff_expr/cluster_profiler_TE.r 21221 all_unique 20 $t hg19
 ```
