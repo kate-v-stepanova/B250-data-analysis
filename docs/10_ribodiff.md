@@ -200,3 +200,27 @@ module load R/3.6.2
 module load gcc/7.2.0
 Rscript $BASE_DIR/software/ribo_diff/highlight_genes.r 21221_RNA all_unique $BASE_DIR/21221_RNA/analysis/input/metadata/RPG_small.txt
 ```
+
+# Highlight several subset of genes with different colors
+
+We have 2 subsets of genes:
+
+```
+$BASE_DIR/21221_RNA/analysis/input/metadata/RPG_small.txt
+$BASE_DIR/21221_RNA/analysis/input/metadata/RPG_large.txt
+```
+
+We want to highlight both lists on a single plot:
+
+```
+
+module load R/3.6.2
+module load gcc/7.2.0
+Rscript $BASE_DIR/software/ribo_diff/highlight_multiple_gene_lists.r 21221_RNA all_unique 2 $BASE_DIR/21221_RNA/analysis/input/metadata/RPG_small.txt $BASE_DIR/21221_RNA/analysis/input/metadata/RPG_large.txt
+```
+
+Where `2` is a number of lists (can be any number), and the following arguments are the lists.
+
+The final plot will look like this:
+
+![table](/pics/highlight_multiple_te.png)
