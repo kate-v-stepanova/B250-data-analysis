@@ -2,7 +2,7 @@
 
 > **_IMPORTANT:_** This step requires [plastid](https://plastid.readthedocs.io/en/latest/). To install, run the command: `pip install plastid` 
 
-## 0. Set up plastid
+## 0. Set up plastid - skip if already done
 
 Install plastid: 
 
