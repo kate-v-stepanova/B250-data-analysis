@@ -48,7 +48,7 @@ For 1x and 3x codons, adjust the first parameter, `1` or `3` instead of `2`. For
 ## 1. Get sequences from bam
 
 ```
-bsub -R "rusage[mem=10G]" $BASE_DIR/software/diricore_subset/1_get_seq_from_bam.sh 17245 all_unique
+bsub -R "rusage[mem=10G]" $BASE_DIR/software/ext_diricore/1_get_seq_from_bam.sh 17245 all_unique
 ```
 
 ## 2. Get plots
