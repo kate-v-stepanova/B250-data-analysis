@@ -54,7 +54,7 @@ bsub -R "rusage[mem=10G]" $BASE_DIR/software/ext_diricore/1_get_seq_from_bam.sh 
 ## 2. Get plots
 
 ```
-python $BASE_DIR/software/ext_diricore/rpf_coverage/4_rpf_coverage_aa_combination.py 17245 all_unique asp 60 1 all_genes all_genes
+python $BASE_DIR/software/ext_diricore/rpf_coverage/4_rpf_coverage_aa_combination.py 17245 all_unique hg19 asp 60 1 all_genes all_genes
 ```
 
 
@@ -102,7 +102,7 @@ bsub -R "rusage[mem=10G]" /icgc/dkfzlsdf/analysis/OE0532/software/diricore_subse
 ## 2. Get plots
 
 ```
-python $BASE_DIR/software/ext_diricore/rpf_coverage/4_rpf_coverage_aa_combination.py 17245 all_unique asp_asp_pro 100 all_genes all_genes
+python $BASE_DIR/software/ext_diricore/rpf_coverage/4_rpf_coverage_aa_combination.py 17245 all_unique asp_asp_pro hg19 100 all_genes all_genes
 ```
 
 Parameters:
