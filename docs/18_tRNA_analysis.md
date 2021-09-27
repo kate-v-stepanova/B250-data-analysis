@@ -2,7 +2,7 @@
 
 here is the explanation: `https://github.com/nedialkova-lab/mim-tRNAseq/blob/master/docs/source/start.rst`
 
-1. `mimseq --species Hsap --cluster --cluster-id 0.95 --threads 15 --min-cov 2000 --max-mismatches 0.1 --control-condition S10_SUM159_2D -n hg19_test --out-dir /icgc/dkfzlsdf/analysis/OE0532/tRNAs/analysis/output/tRNAs/21012human --max-multi 4 --remap --remap-mismatches 0.075 /icgc/dkfzlsdf/analysis/OE0532/tRNAs/analysis/input/metadata/sample_data.21012human.txt`
+1. `mimseq --species Hsap --cluster --cluster-id 0.95 --threads 15 --min-cov 2000 --max-mismatches 0.1 --control-condition S10_SUM159_2D -n hg19_test --out-dir $BASE_DIR/tRNAs/analysis/output/tRNAs/21012human --max-multi 4 --remap --remap-mismatches 0.075 $BASE_DIR/tRNAs/analysis/input/metadata/sample_data.21012human.txt`
 
 error: `FileNotFoundError: [Errno 2] No such file or directory: 'cmalign': 'cmalign'`
 
