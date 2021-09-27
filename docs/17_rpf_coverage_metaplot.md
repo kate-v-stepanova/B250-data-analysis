@@ -4,13 +4,15 @@
 
 Let's consider not that large datasets, which is around `12M` aligned reads per sample (or less). If it is a larger dataset, still can try this option - because it's easier. If it did not work, then go for the method described in next section.
 
-### 0. Generate reference files
+### 0. Generate reference files - skip if already don
 
-Skip this step if references for this genome have already been created.
+Skip this step if references for this genome have already been created
 
 ```
 python $BASE_DIR/software/ext_diricore/triplets/00_get_codon_posistions_any_combination.py 3 hg19
 ```
+
+The files are written in this directory: `$BASE_DIR/static/hg19/codons/3x/aa_combinations`
 
 ### 1. Get sequences from bam
 
