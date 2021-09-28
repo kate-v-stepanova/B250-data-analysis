@@ -16,6 +16,10 @@ mamba install -c bioconda mimseq
 
 ### 2. Install usearch
 
+> **_NOTE:_** check if usearch has already been installed: `ls -lh $BASE_DIR/software/bin/usearch`
+> 
+> If not, follow the instructions below
+
 ```
 wget https://drive5.com/downloads/usearch10.0.240_i86linux32.gz
 gunzip usearch10.0.240_i86linux32.gz
