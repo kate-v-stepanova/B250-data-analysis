@@ -55,7 +55,7 @@ cd $BASE_DIR/17920/analysis/output/ext_diricore/all_unique/rpf_coverage_aa_metap
 mkdir split
 cp 10perc/*.tsv split
 
-for i in {20..100..10}; do for f in $(ls all_genes/${i}perc/*.tsv); do fn=$(basename $f); echo "cat $f >> split/$fn"; done; done > 1.sh
+for i in {20..100..10}; do for f in $(ls all_genes/${i}perc/*.tsv); do fn=$(basename $f); echo "cat $f | tail -n +2 >> split/$fn"; done; done > 1.sh
 
 bash ./1.sh
 rm 1.sh
