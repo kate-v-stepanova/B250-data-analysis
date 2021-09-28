@@ -202,3 +202,30 @@ for t in 2 -2 1.5 -1.5; do echo "bsub -q medium -R \"rusage[mem=30G]\" Rscript $
 for t in 2 -2 1.5 -1.5; do echo "bsub -q medium -R \"rusage[mem=30G]\" Rscript $BASE_DIR/software/diff_expr/cluster_profiler_2.r 21221_RNA all_unique 20 $t hg19 replicates"; done
 ```
 
+# Cluster Profiler for the subset of genes
+
+## 1. Create a list of genes
+
+```
+vim $BASE_DIR/22276/analysis/input/metadata/list_of_genes.txt
+```
+
+## 2. Run diff_expr on a subset of genes
+
+```
+Rscript $BASE_DIR/software/diff_expr/1_diff_expr.r 22276 all_unique 20 hg19 all_samples  $BASE_DIR/22276/analysis/input/metadata/list_of_genes.txt
+```
+
+Output dir is: `$BASE_DIR/22276/analysis/output/diff_expr/all_unique_reads20/list_of_genes`
+
+## 3. Aggregate results
+
+```
+python $BASE_DIR/software/diff_expr/2_diff_expr.py 21221 all_unique 20 list_of_genes
+```
+
+## 4. Run ClusterProfiler
+
+```
+Rscript  $BASE_DIR/software/diff_expr/cluster_profiler_2.r 21221 all_unique 20 $t hg19 list_of_genes
+```
