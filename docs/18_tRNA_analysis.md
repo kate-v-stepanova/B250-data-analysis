@@ -1,4 +1,4 @@
-# Analysis of tRNAs
+# Analysis of tRNAs (mimseq)
 
 ## Installation
 
@@ -12,7 +12,6 @@ conda activate mimseq
 conda config --add channels conda-forge
 conda install -c conda-forge mamba
 mamba install -c bioconda mimseq
-pip install mimseq
 ```
 
 ### 2. Install usearch
