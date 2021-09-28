@@ -118,5 +118,5 @@ module load R
 ### 3. Run analysis
 
 ```
-mimseq --species Hsap --cluster --cluster-id 0.95 --threads 15 --min-cov 2000 --max-mismatches 0.1 --control-condition S10_SUM159_2D -n hg19_test --out-dir $BASE_DIR/tRNAs/analysis/output/tRNAs/21012human --max-multi 4 --remap --remap-mismatches 0.075 $BASE_DIR/tRNAs/analysis/input/metadata/sample_data.21012human.txt
+mimseq --species Hsap --cluster --cluster-id 0.95 --threads 15 --min-cov 2000 --max-mismatches 0.1 --control-condition S10_SUM159_2D -n hg19_test --out-dir $BASE_DIR/tRNAs/analysis/output/tRNAs/21012human --max-multi 4 --remap --remap-mismatches 0.075 $BASE_DIR/tRNAs/analysis/input/metadata/sample_data.21012human.txt --keep-temp
 ```
