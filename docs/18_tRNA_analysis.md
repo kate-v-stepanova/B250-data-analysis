@@ -52,7 +52,7 @@ make install
 > 
 > If not, follow the instructions below
 
-Install blastn: `https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/`
+Install blastn: https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/
 
 ```
 wget https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.11.0+-x64-linux.tar.gz
@@ -70,7 +70,7 @@ This will take a couple of hours
 > 
 > If not, follow the instructions below
 
-This version: `http://research-pub.gene.com/gmap/src/gmap-gsnap-2019-02-26.tar.gz`
+This version: http://research-pub.gene.com/gmap/src/gmap-gsnap-2019-02-26.tar.gz
 
 ```
 cd $BASE_DIR/software/bin/
