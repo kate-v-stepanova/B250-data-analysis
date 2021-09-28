@@ -53,7 +53,7 @@ for i in {10..100..10}; do for f in $(ls $BASE_DIR/17920/analysis/output/ext_dir
 ```
 cd $BASE_DIR/17920/analysis/output/ext_diricore/all_unique/rpf_coverage_aa_metaplot/
 mkdir split
-cp 10perc/*.tsv split
+cp all_genes/10perc/*.tsv split
 
 for i in {20..100..10}; do for f in $(ls all_genes/${i}perc/*.tsv); do fn=$(basename $f); echo "cat $f | tail -n +2 >> split/$fn"; done; done > 1.sh
 
