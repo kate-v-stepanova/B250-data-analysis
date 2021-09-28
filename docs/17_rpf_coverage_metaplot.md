@@ -51,11 +51,11 @@ for i in {10..100..10}; do for f in $(ls $BASE_DIR/17920/analysis/output/ext_dir
 ### 2. Merge the data into 1 file
 
 ```
-cd $BASE_DIR/17920/analysis/output/ext_diricore/all_unique/rpf_coverage_aa_metaplot/all_genes/
+cd $BASE_DIR/17920/analysis/output/ext_diricore/all_unique/rpf_coverage_aa_metaplot/
 mkdir split
 cp 10perc/*.tsv split
 
-for i in {20..100..10}; do for f in $(ls ${i}perc/*.tsv); do fn=$(basename $f); echo "cat $f >> split/$fn"; done; done > 1.sh
+for i in {20..100..10}; do for f in $(ls all_genes/${i}perc/*.tsv); do fn=$(basename $f); echo "cat $f >> split/$fn"; done; done > 1.sh
 
 bash ./1.sh
 rm 1.sh
