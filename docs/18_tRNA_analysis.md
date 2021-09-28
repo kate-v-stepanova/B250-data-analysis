@@ -109,6 +109,8 @@ export PATH=$PATH:$BASE_DIR/software/bin/cmalign
 export PATH=$PATH:$BASE_DIR/software/bin/blastn
 export PATH=$PATH:$BASE_DIR/software/bin/
 export PATH=$PATH:$BASE_DIR/software/bin/gmap
+module load samtools
+module load bedtools
 module load gcc/7.2.0
 module load R
 ```
