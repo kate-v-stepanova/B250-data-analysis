@@ -47,6 +47,12 @@ Created file: /icgc/dkfzlsdf/analysis/OE0532/21012/analysis/output/gen_tracks/al
 python $BASE_DIR/software/ucsc/3_ucsc_tracks_to_ftp.py 21012 all_unique
 ```
 
+> **_NOTE:_** It is also possible to upload all existing tracks for all project at once:
+
+```
+python $BASE_DIR/software/ucsc/3_ucsc_tracks_to_ftp.py
+```
+
 This will output the following:
 
 ```
